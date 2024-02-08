@@ -15,7 +15,7 @@ jobs:
       - name: Checkout receiver repo
         uses: actions/checkout@v4
         with:
-          repository: ThomasNagel/PushReceiver
+          repository: modi-data/modi-data.github.io
           token: ${{ secrets.ACCESS_MODI_DATA_REPO }}
 
       - name: Checkout this repo
