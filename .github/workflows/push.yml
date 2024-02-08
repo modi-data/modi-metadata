@@ -41,7 +41,7 @@ jobs:
 
       - name: commit database
         run: |
-          git add metadata.db
+          git add data/metadata.db
           git commit -m 'DATABASE'
 
       - name: push
