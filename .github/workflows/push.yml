@@ -1,0 +1,48 @@
+name: Deploy database
+run-name: ${{ github.actor }} is deploying the database
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'yml/*.yml'
+      - '.src/config.json'
+jobs:
+  build-db-and-push:
+    runs-on: ubuntu-latest
+    environment: DeployDatabase
+    steps:
+      - name: Checkout receiver repo
+        uses: actions/checkout@v4
+        with:
+          repository: ThomasNagel/PushReceiver
+          token: ${{ secrets.PUSHRECEIVER_TOKEN }}
+
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          path: yaml-files
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies for python script
+        run: pip3 install -r yaml-files/.src/requirements.txt
+
+      - name: create Database
+        run: python3 yaml-files/.src/createDB.py yaml-files/
+
+      - name: config git settings
+        run: |
+          git config --global user.name 'push repo'
+          git config --global user.email 'not@important.com'
+
+      - name: commit database
+        run: |
+          git add metadata.db
+          git commit -m 'DATABASE'
+
+      - name: push
+        run: git push origin main

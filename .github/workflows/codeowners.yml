@@ -1,0 +1,30 @@
+name: Update CODEOWNERS
+run-name: ${{ github.actor }} is deploying updating CODEOWNERS
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'yml/*.yml'
+jobs:
+  update-codeowners:
+    runs-on: ubuntu-latest
+    environment: DeployDatabase
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SELF_TOKEN }}
+      
+      - name: config git settings
+        run: |
+          git config --global user.name 'ThomasNagel'
+          git config --global user.email 'tmj.nagel@gmail.com'
+
+      - name: commit database
+        run: |
+          git add .github/CODEOWNERS
+          git commit -m 'DATABASE'
+
+      - name: push
+        run: git push origin main

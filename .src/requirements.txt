@@ -1,0 +1,3 @@
+sqlite-utils>=3.36
+pyyaml>=6.0
+bleach

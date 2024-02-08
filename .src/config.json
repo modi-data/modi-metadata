@@ -1,0 +1,30 @@
+{   
+    "yamlPath": "yml",
+    "pk": "id",
+    "dbName": "metadata.db",
+    "tableName": "metadata",
+    "requiredFields": {
+        "summary": [
+            "why_was_it_collected", 
+            "objectives", 
+            "research_questions", 
+            "producer_of_data", 
+            "data_area", 
+            "data_type",
+            "modi_use_case",
+            "contact_person",
+            "dataset_size"],
+        "administrative": [
+            "rights",
+            "license",
+            "access",
+            "constraints",
+            "billing",
+            "data_end_of_life",
+            {
+                "processes": [
+                    "collection_preparation", 
+                    "collection"]
+            }]
+    }
+}
