@@ -1,7 +1,7 @@
 {   
     "yamlPath": "yml",
     "pk": "id",
-    "dbName": "metadata.db",
+    "dbName": "data/metadata.db",
     "tableName": "metadata",
     "requiredFields": {
         "summary": [

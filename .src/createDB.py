@@ -72,6 +72,7 @@ def transformData(yamlData:list[tuple], requiredFields:dict) -> list[dict]:
 
 def main():
     pathToBaseDir = sys.argv[1]
+    outputDir = sys.argv[2]
     # Get settings from config file
     with open(os.path.join(pathToBaseDir, PATH_TO_CONFIG), "r") as f:
         config = json.load(f)
