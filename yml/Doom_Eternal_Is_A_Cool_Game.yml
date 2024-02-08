@@ -34,7 +34,7 @@ administrative:
   
   billing: Free
 
-  data_end_of_life: 6666-66-66
+  data_end_of_life: 6666-00-00
 
   processes:
     collection_preparation: |
