@@ -12,7 +12,7 @@ summary:
 
   why_was_it_collected: |
     test collection
-    
+
   how_was_the_collection_executed: |
     Volunteers were recruited in the Trondheim area. Their vehicles got an OBU that
     recorded their GNSS position and speed every second, as well as displaying a 
@@ -36,7 +36,7 @@ summary:
     for the experiment. 
 
   # A person that can be contacted for more information about this dataset.
-  contact_person: Petter Arnesen, petter.arnesen@sintef.no
+  contact_person: Redacted Redacted, red.dacted@server.com
   
   # Which entity produced this dataset
   producer_of_data: SINTEF
@@ -95,7 +95,7 @@ administrative:
   license: MIT
   
   # Who can access the dataset?
-  access: limited, contact petter.arnesen@sintef.no
+  access: limited, contact red.dacted@server.com
 
   # Any constraints in usage of the dataset?
   constraints: |

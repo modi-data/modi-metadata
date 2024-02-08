@@ -57,7 +57,7 @@ administrative:
   license: MIT
   
   # Who can access the dataset?
-  access: limited, contact petter.arnesen@sintef.no
+  access: limited, contact random.acts@gmail.com
 
   # Any constraints in usage of the dataset?
   constraints: |
