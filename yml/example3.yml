@@ -28,7 +28,7 @@ summary:
 
   # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
   # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
-  data_area: Heaven
+  data_area: Netherlands
 
   # Which type of data this is. 
   # Must be one or more of: 
