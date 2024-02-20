@@ -3,7 +3,7 @@
 ## Introduction
 The core idea is to use the main branch as a gateway to the *DeployDatabase* environment, this environment contains the access token to the website repo. *CODEOWNERS* & branch protection makes sure that contributors can not change workflows run in the environment. The environment only allows workflows in main to run within it. Note: contributors can still run workflows in different branches but those workflows don't have access to sensitive data in the environment.
 
-## Settings
+## Settingsblah
 
 ### General
 Require contributors to sign off on web-based commits\
