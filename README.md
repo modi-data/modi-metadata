@@ -9,7 +9,7 @@ Other users can then search for these files and in the end use them find and use
 To upload to this repository you first need to become a **contributor**.
 
 ### Becoming a contributor
-Send an email to **TEMP NAME**
+Send an email to **TEMP NAME**.\
 State what organization you are from and what the name is of your Github profile.
 
 ### Uploading a file
