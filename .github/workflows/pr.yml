@@ -1,0 +1,26 @@
+name: Deploy database
+run-name: ${{ github.actor }} is deploying the database
+on:
+  pull_request:
+    paths:
+      - 'yml/*.yml'
+      - '.src/config.json'
+jobs:
+  build-db-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          path: yaml-files
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies for python script
+        run: pip3 install -r yaml-files/.src/requirements.txt
+
+      - name: create Database
+        run: python3 yaml-files/.src/createDB.py yaml-files/
