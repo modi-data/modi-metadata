@@ -21,6 +21,9 @@ jobs:
 
       - name: Install dependencies for python script
         run: pip3 install -r yaml-files/.src/requirements.txt
+      
+      - name: Make "data" dir to prevent creatDB form complaining
+        run: mkdir "data"
 
       - name: create Database
         run: python3 yaml-files/.src/createDB.py yaml-files/
