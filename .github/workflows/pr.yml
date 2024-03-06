@@ -1,12 +1,12 @@
-name: Deploy database
-run-name: ${{ github.actor }} is deploying the database
+name: File checks
+run-name: ${{ github.actor }} is trying to add a new file
 on:
   pull_request:
     paths:
       - 'yml/*.yml'
       - '.src/config.json'
 jobs:
-  build-db-and-push:
+  check-file-structure:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
