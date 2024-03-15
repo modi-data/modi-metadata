@@ -3,6 +3,7 @@
     "pk": "id",
     "dbName": "data/metadata.db",
     "tableName": "metadata",
+    "fts": ["file", "summary-why_was_it_collected", "summary-objectives", "summary-research_questions"],
     "requiredFields": {
         "summary": [
             "why_was_it_collected", 

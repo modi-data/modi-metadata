@@ -91,6 +91,7 @@ def main():
 
     db = sqlite_utils.Database(config["dbName"], recreate=True)
     db[config["tableName"]].upsert_all(dictData, pk=config["pk"], alter=True)
+    db[config["tableName"]].enable_fts(config["fts"], tokenize="porter")
 
 
 if __name__ == "__main__":
