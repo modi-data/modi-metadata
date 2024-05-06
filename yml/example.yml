@@ -1,0 +1,107 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+# The summary should contain a thorough description of the study design and execution.
+# The description must be complete and self-contained, but can contain links
+# to images and further information (but keep in mind that the description
+# must make sense even if those links should stop working.)
+# Multiline strings can be written by starting the value with a pipe symbol (|).
+summary:
+
+  why_was_it_collected: Example
+
+  how_was_the_collection_executed: Example
+
+  objectives: Example
+
+  research_questions: Example
+
+  experimental_plan: N/A
+
+  sample_selection_criteria: N/A
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Example, Example
+
+  # A web address to download the data if applicable.
+  web_address: N/A
+
+  # Which entity produced this dataset.
+  producer_of_data: Example
+
+  # Data set DOI if applicable
+  DOI: N/A
+
+  # Which area the data is from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
+  # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
+  data_area: Example
+
+  # The type of data this is.
+  # Must be one or more of:
+  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure,
+  #     speed/acceleration, video, pictures, gnss, lidar, radar, weather, vehicle probe data, events, other.
+  # You may add multiple data types if relevant, separated by a comma.
+  data_type: survey
+
+  # The use case in MODI this dataset is related to.
+  # Must be one of: UCNL, UCGE, UCSE, UCNO, UCCCAM, Other tasks
+  modi_use_case: UCNL
+
+  # An approximate description of the size of this dataset
+  dataset_size: Example
+
+  # A tiny sample of the dataset to show how it looks (if possible).
+  dataset_example: N/A
+
+# 5.3.3 Administrative metadata
+# "Administrative metadata are collected for the effective operation and management of data
+# storage and catalogues. This administrative information, covering various topics, is stored
+# along with the datasets. From a FOT data re-use perspective, the key role of administrative
+# metadata is to cover access conditions, rights, ownership and constraints."
+administrative:
+
+  # The version number of this dataset, used to keep track of different
+  # versions if it is uploaded multiple times.
+  # The version number can be numeric, date-based, or anything else, but
+  # it must be easy to see which version is newer without further knowledge.
+  version_number: 
+
+  # The date this dataset was uploaded. Must be in ISO 8601 format (YYYY-MM-DD).
+  archiving_date: 
+
+  # A unique identifier for this dataset. This will be used to identify this and
+  # future updates in the metadata database, and must never be changed after the
+  # dataset has been uploaded for the first time.
+  unique_dataset_id: Example
+
+  # Who has rights to use this dataset?
+  rights: Example
+
+  # Does the dataset have a specific license for usage?
+  license: Example
+
+  # Who can access the dataset?
+  access: Example
+
+  # Any constraints in usage of the dataset?
+  constraints: Example
+
+  # Can the dataset be used for free, or does usage incur any costs/billing for the user?
+  billing: Example
+
+  # When the data set will stop existing (for example due to privacy regulations).
+  # Must be in ISO 8601 format (YYYY-MM-DD).
+  data_end_of_life: 2024-05-16
+
+  # A more detailed description of the various processes of the data collection,
+  # for example the methods/tools used to collect the data, filtering, post-processing,
+  # storage file structure, etc.
+  # This should include information about relevant conditions during the data collection
+  # (for example weather, climate, time of day, etc).
+  # Each key under "processes" can be custom made, and there can be as many as is
+  # necessary. The proposed keys are just examples.
+  processes:
+    example: |
+      Example
