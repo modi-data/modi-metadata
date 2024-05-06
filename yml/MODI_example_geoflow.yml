@@ -40,7 +40,7 @@ summary:
     for the experiment. 
 
   # A person that can be contacted for more information about this dataset.
-  contact_person: Petter Arnesen, petter.arnesen@sintef.no
+  contact_person: John doe, john@doe.com
   
   # A web address to download the data if applicable.
   web_address: N/A
@@ -105,7 +105,7 @@ administrative:
   license: MIT
   
   # Who can access the dataset?
-  access: limited, contact petter.arnesen@sintef.no
+  access: limited, contact john@doe.com
 
   # Any constraints in usage of the dataset?
   constraints: |
