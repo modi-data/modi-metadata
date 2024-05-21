@@ -13,7 +13,9 @@
             "data_type",
             "modi_use_case",
             "contact_person",
-            "dataset_size"],
+            "dataset_size",
+            "web_address",
+            "DOI"],
         "administrative": [
             "rights",
             "license",

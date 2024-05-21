@@ -26,13 +26,13 @@ summary:
   contact_person: Example, Example
 
   # A web address to download the data if applicable.
-  web_address: N/A
+  web_address: test54602.nl
 
   # Which entity produced this dataset.
   producer_of_data: Example
 
   # Data set DOI if applicable
-  DOI: N/A
+  DOI: 10.1145/2783446.2783605
 
   # Which area the data is from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
   # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.

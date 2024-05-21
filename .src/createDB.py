@@ -45,6 +45,8 @@ def extractData(newKey: str, data:dict, requiredFields:dict) -> list[tuple]:
                 for field in rf:
                     if isinstance(field, dict):
                         flatData = flatData + extractData(f"{newKey}{key}-", data[key], field)
+                    elif data[key] == None:
+                        flatData.append((f"{newKey}{key}-{field}", "N/A"))
                     elif field in data[key].keys():
                         flatData.append((f"{newKey}{key}-{field}", data[key][field]))
 
