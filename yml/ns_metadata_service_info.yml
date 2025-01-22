@@ -31,12 +31,11 @@ summary:
     in Norway (Telia, Ice and Telenor) used as well. The new solution was only implemented for
     Telia, so Ice and Telenor are only used as a baseline.
 
-
   sample_selection_criteria: N/A
 
   # A person that can be contacted for more information about this dataset.
   contact_person: Petter Arnesen, petter.arnesen@sintef.no
-  
+
   # A web address to download the data if applicable.
   web_address: N/A
 
@@ -50,9 +49,9 @@ summary:
   # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
   data_area: Norway
 
-  # Which type of data this is. 
-  # Must be one or more of: 
-  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure, 
+  # Which type of data this is.
+  # Must be one or more of:
+  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure,
   #     speed/acceleration, video, pictures, gnss, lidar, radar, weather, vehicle probe data, events, other.
   # You may add multiple data types if relevant, separated by a comma.
   data_type: mobile network
@@ -78,7 +77,6 @@ summary:
 # along with the datasets. From a FOT data re-use perspective, the key role of administrative
 # metadata is to cover access conditions, rights, ownership and constraints."
 administrative:
-
   # The version number of this dataset, used to keep track of different
   # versions if it is uploaded multiple times.
   # The version number can be numeric, date-based, or anything else, but
@@ -95,16 +93,16 @@ administrative:
 
   # Who has rights to use this dataset?
   rights: Open, see Access for contact info
-  
+
   # Does the dataset have a specific license for usage?
   license: No
-  
+
   # Who can access the dataset?
   access: Everyone, contact petter.arnesen@sintef.no
 
   # Any constraints in usage of the dataset?
   constraints: N/A
-  
+
   # Can the dataset be used for free, or does usage incur any costs/billing for the user?
   billing: The dataset can be used without cost as long as access and constraints are agreed upon.
 
@@ -146,17 +144,16 @@ administrative:
 # interpret the contents of a data container. All components of the dataset need to be
 # described."
 structural:
-
   summary: |
     Each trip was recorded as a separate CSV file. File with the corresponding id in 
-    'modi_uc_no_border_crossing_network_packet_rate_new_solution' was recorded on the same trip. 
+    'modi_uc_no_border_crossing_network_packet_rate_new_solution' was recorded on the same trip.
 
-  # File format. Please include attributes such as delimiter for CSV, decimal separator, 
+  # File format. Please include attributes such as delimiter for CSV, decimal separator,
   # thousand separator (if any), and any other properties that is relevant for parsing the data.
   file_format: csv with ';' as delimiter, ',' as decimal separator.
 
   # Please describe the storage structure of the data. If it consists of flat files, the folder
-  # structure and file naming can be relevant. If it is a database, a description of the relevant 
+  # structure and file naming can be relevant. If it is a database, a description of the relevant
   # tables, indices, triggers and views is important.
   file_structure: |
     Flat files in a single folder, file names consists of [ID]_[date-time start of trip]-network-packet-rate.txt. 
@@ -179,13 +176,12 @@ structural:
 # characteristics of each measure or component, but also information about how the data were
 # generated and collected."
 descriptive:
-
   # The descriptions can vary by data type.
   # For each data field in your dataset, please fill out all relevant parameters from section
   # 5.3.1 of the DSF, and enter the attributes using the "Data description item" in lower-case
-  # as the key. The following list lists the most relevant attributes from the tables, see 
+  # as the key. The following list lists the most relevant attributes from the tables, see
   # tables 3 to 9 in the DSF for full explanations.
-  
+
   # - description
   # - data_precision
   # - unit
@@ -211,7 +207,6 @@ descriptive:
   # - When dealing with dates or times, the format must be specified with the format key.
 
   fields:
-
     timestamp:
       description: Timestamp in format yyyy-mm-dd hh:mm:ss.fff UTC.
 
@@ -252,41 +247,41 @@ descriptive:
       quality: Usually within 3 meters.
 
     network-code:
-      description: | 
+      description: |
         Home network identity (HNI), also known in international roaming contexts as the PLMN (Public Land Mobile Network), 
         identifies the country and network. Format is a string of 6 digits.
 
       sample_rate: 1hz
       origin: The data collection app.
       type: string
-      error_codes: '000000' is used if the data collection app is not connected to a network.
+      error_codes: 000000 is used if the data collection app is not connected to a network.
       quality: High
 
     country:
-      description: | 
+      description: |
         The country for the network operator the data collection app is connected to.
 
       sample_rate: 1hz
       origin: The data collection app.
       type: string
-      error_codes: 'XX' is used if the data collection app is not connected to a network.
+      error_codes: XX is used if the data collection app is not connected to a network.
       quality: High
 
     operator:
-      description: | 
+      description: |
         Name of the network operator the data collection app is connected to.
 
       sample_rate: 1hz
       origin: The data collection app.
       type: string
-      error_codes: 'NoNetwork' is used if the data collection app is not connected to a network.
+      error_codes: NoNetwork is used if the data collection app is not connected to a network.
       quality: High
       availability: Unknown
 
     unknown-13-1:
-      description: | 
+      description: |
         Unknown. 
-        
+
         Value distribution:
         13: 94%
         2: 4%
@@ -298,19 +293,19 @@ descriptive:
       type: string
 
     technology:
-      description: | 
+      description: |
         The mobile network technology used. I.e LTE, 5G etc.
 
       sample_rate: 1hz
       origin: The data collection app.
       type: string
-      error_codes: 'Unknown' is used if the data collection app cannot decide on the technology.
+      error_codes: Unknown is used if the data collection app cannot decide on the technology.
       quality: High
 
     unknown-13-2:
-      description: | 
+      description: |
         Unknown. 
-        
+
         Value distribution:
         13: 94%
         2: 4%
@@ -323,9 +318,9 @@ descriptive:
       type: string
 
     unknown-0-1:
-      description: | 
+      description: |
         Unknown. 
-        
+
         Value distribution:
         0: 50%
         3: 41% 
@@ -336,9 +331,9 @@ descriptive:
       type: string
 
     unknown-0-2:
-      description: | 
+      description: |
         Unknown. 
-        
+
         Value distribution:
         0: >99%
         1: <1%
@@ -348,13 +343,13 @@ descriptive:
       type: string
 
     service:
-      description: | 
+      description: |
         The service level for the mobile network the data collection app is using.
 
       sample_rate: 1hz
       origin: The data collection app.
       type: string
-      error_codes: 'No service' is used if the data collection app is not connected to a network.
+      error_codes: No service is used if the data collection app is not connected to a network.
       quality: High
       enumeration_specification: |
         Normal service, roaming
@@ -362,7 +357,7 @@ descriptive:
         No service
 
     signal_strength:
-      description: | 
+      description: |
         The signal strength for the mobile network the data collection app is connected to.
 
       unit: decibel-milliwatts
@@ -372,9 +367,9 @@ descriptive:
       quality: High
 
     unknown-5:
-      description: | 
+      description: |
         Unknown. 
-        
+
         Value distribution:
         5: 100%
 
@@ -383,7 +378,7 @@ descriptive:
       type: float
 
     sim_card_status:
-      description: | 
+      description: |
         Status for the SIM-card used by the data collection app.
 
       sample_rate: 1hz
@@ -394,7 +389,7 @@ descriptive:
         Ready
 
     cell_information:
-      description: | 
+      description: |
         Details on the current mobile network tower that is serving us right now. Subsequent rows are candidate cells.
 
       sample_rate: 1hz
