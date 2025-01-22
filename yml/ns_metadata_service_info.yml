@@ -1,0 +1,402 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+# The summary should contain a thorough description of the study design and execution.
+# The description must be complete and self-contained, but can contain links
+# to images and further information (but keep in mind that the description
+# must make sense even if those links should stop working.)
+# Multiline strings can be written by starting the value with a pipe symbol (|).
+summary:
+  why_was_it_collected: |
+    To test mobile network connectivity when crossing the border between Norway and Sweden with a 
+    new solution for more seamless border crossing developed by Telia.
+
+  how_was_the_collection_executed: |
+    Field test trial collecting several relevant parameters related to connectivity in 
+    multiple runs across the border.
+
+  objectives: |
+    Learn how mobile network connectivity works when crossing borders with a new solution for more seamless border crossing developed by Telia.
+
+  research_questions: |
+    What is the expected delays and service behavior when crossing the border after implementation of a new solution by Telia?
+
+  experimental_plan: |
+    Several trips with several smart phones each trip was travelled, resulting in 40 reg-
+    istered trips across the Swedish-Norwegian border at Svinesund in both directions. Both
+    high-end Samsung S21 smart phones with 5G connectivity and low-cost Motorola E6
+    (without 5G) smart phones where used, with SIM cards from all three national operators
+    in Norway (Telia, Ice and Telenor) used as well. The new solution was only implemented for
+    Telia, so Ice and Telenor are only used as a baseline.
+
+
+  sample_selection_criteria: N/A
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Petter Arnesen, petter.arnesen@sintef.no
+  
+  # A web address to download the data if applicable.
+  web_address: N/A
+
+  # Which entity produced this dataset
+  producer_of_data: SINTEF
+
+  # Data set DOI if applicable
+  DOI: N/A
+
+  # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
+  # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
+  data_area: Norway
+
+  # Which type of data this is. 
+  # Must be one or more of: 
+  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure, 
+  #     speed/acceleration, video, pictures, gnss, lidar, radar, weather, vehicle probe data, events, other.
+  # You may add multiple data types if relevant, separated by a comma.
+  data_type: mobile network
+
+  # Which of the use cases in MODI this dataset is related to.
+  # Must be one of: UCNL, UCGE, UCSE, UCNO, UCCCAM, Other tasks
+  modi_use_case: UCNO
+
+  # An approximate description of the size of this dataset
+  dataset_size: Approximately 12 MB (46 000 data points).
+
+  # A tiny sample of the dataset to show how it looks (if possible).
+  dataset_example: |
+    DeviceName: moto_1026-ice
+    Version: 4 debug 2023-07-02 10:53:58 UTC
+    2024-10-02 09:14:51.253;0.0000000;0.0000000;24214;NO;ice+;13;LTE;13;0;0;Normal service;-89;5;Ready;LTE 242 014 4a39 25996811 1850 Band 3 1870.0 MHz  pci=390 -85 dBm
+    2024-10-02 09:14:52.254;0.0000000;0.0000000;24214;NO;ice+;13;LTE;13;0;0;Normal service;-90;5;Ready;LTE 242 014 4a39 25996811 1850 Band 3 1870.0 MHz  pci=390 -85 dBm
+    2024-10-02 09:14:53.254;0.0000000;0.0000000;24214;NO;ice+;13;LTE;13;0;0;Normal service;-91;5;Ready;LTE 242 014 4a39 25996811 1850 Band 3 1870.0 MHz  pci=390 -85 dBm
+
+# 5.3.3 Administrative metadata
+# "Administrative metadata are collected for the effective operation and management of data
+# storage and catalogues. This administrative information, covering various topics, is stored
+# along with the datasets. From a FOT data re-use perspective, the key role of administrative
+# metadata is to cover access conditions, rights, ownership and constraints."
+administrative:
+
+  # The version number of this dataset, used to keep track of different
+  # versions if it is uploaded multiple times.
+  # The version number can be numeric, date-based, or anything else, but
+  # it must be easy to see which version is newer without further knowledge.
+  version_number: 1
+
+  # The date this dataset was uploaded. Must be in ISO 8601 format (YYYY-MM-DD).
+  archiving_date: 2025-01-02
+
+  # A unique identifier for this dataset. This will be used to identify this and
+  # future updates in the metadata database, and must never be changed after the
+  # dataset has been uploaded for the first time.
+  unique_dataset_id: modi_uc_no_border_crossing_service_info_new_solution
+
+  # Who has rights to use this dataset?
+  rights: Open, see Access for contact info
+  
+  # Does the dataset have a specific license for usage?
+  license: No
+  
+  # Who can access the dataset?
+  access: Everyone, contact petter.arnesen@sintef.no
+
+  # Any constraints in usage of the dataset?
+  constraints: N/A
+  
+  # Can the dataset be used for free, or does usage incur any costs/billing for the user?
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+
+  # When the data set will stop existing (for example due to privacy regulations).
+  # Must be in ISO 8601 format (YYYY-MM-DD).
+  data_end_of_life: 2026-03-31
+
+  # A more detailed description of the various processes of the data collection,
+  # for example the methods/tools used to collect the data, filtering, post-processing,
+  # storage file structure, etc.
+  # This should include information about relevant conditions during the data collection
+  # (for example weather, climate, time of day, etc).
+  # Each key under "processes" can be custom made, and there can be as many as is
+  # necessary. The proposed keys are just examples.
+  processes:
+    collection: |
+      A test protocol was developed and implemented for Linux and Android to measure relevant 
+      quality indicators. The test application sends specially crafted datagram messages to 
+      a dedicated server on the internet to facilitate measurement of packet throughput rate 
+      and packet loss independently in uplink and downlink directions. Round Trip Time (RTT) 
+      was also calculated. On the Android application, parameters such as position, timestamp, 
+      signal strength, operator, country code, technology (EDGE, WCDMA, LTE, LTE-CA, 5G-NSA etc.) 
+      were measured about every second. Data packet size and rate are configurable independently 
+      in uplink and downlink directions. In the tests, uplink packet size 200 with a rate of 2 Hz 
+      and downlink packet size 800 bytes with a rate of 4 Hz were used. The analysis focuses on
+      the downlink packet performance as seen from an application using off the shelf equip-
+      ment.
+    filtering: |
+      This data set is the raw data, and has no filters.
+    aggregation: |
+      This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+# "Structural metadata are used to describe how the data are structured in relation to other
+# data. Data are organized into a system (e.g., a database and/or file system), a structure or
+# database schema and a data content format. The aim of structural metadata is to facilitate
+# the initial phase of data re-use by providing the necessary documentation about how the data
+# is organized. The description should include the file system, the file structure and how to
+# interpret the contents of a data container. All components of the dataset need to be
+# described."
+structural:
+
+  summary: |
+    Each trip was recorded as a separate CSV file. File with the corresponding id in 
+    'modi_uc_no_border_crossing_network_packet_rate_new_solution' was recorded on the same trip. 
+
+  # File format. Please include attributes such as delimiter for CSV, decimal separator, 
+  # thousand separator (if any), and any other properties that is relevant for parsing the data.
+  file_format: csv with ';' as delimiter, ',' as decimal separator.
+
+  # Please describe the storage structure of the data. If it consists of flat files, the folder
+  # structure and file naming can be relevant. If it is a database, a description of the relevant 
+  # tables, indices, triggers and views is important.
+  file_structure: |
+    Flat files in a single folder, file names consists of [ID]_[date-time start of trip]-network-packet-rate.txt. 
+    Headers are not included in the files, but the fields described below describes them in the correct order.
+    The first 2 rows are metadata for the file and does not follow the same format as the rest.
+
+  # Which tools can be used to read the data. Especially important for non-standard formats.
+  required_tools: notepad, various CSV parsing libraries
+
+  # If the files were made using a specific tool, the tool name and version may be relevant
+  # for reading the data.
+  tool_versions: N/A
+
+  # Additional keys and values can be added here if this is a non-standard format that requires
+  # a more detailed explanation.
+
+# 5.3.1 Descriptive metadata
+# "Descriptive metadata shall include detailed information needed to understand each part of a
+# dataset. The purpose is to describe the dataset and build trust in it—by providing not only the
+# characteristics of each measure or component, but also information about how the data were
+# generated and collected."
+descriptive:
+
+  # The descriptions can vary by data type.
+  # For each data field in your dataset, please fill out all relevant parameters from section
+  # 5.3.1 of the DSF, and enter the attributes using the "Data description item" in lower-case
+  # as the key. The following list lists the most relevant attributes from the tables, see 
+  # tables 3 to 9 in the DSF for full explanations.
+  
+  # - description
+  # - data_precision
+  # - unit
+  # - sample_rate
+  # - filter
+  # - origin
+  # - bias
+  # - type
+  # - definition
+  # - range
+  # - error_codes
+  # - quality
+  # - offset
+  # - enumeration_specification
+  # - availability
+  # - srid (for coordinates)
+  # - time_zone (for time stamps)
+  # - time_format (for time stamps)
+
+  # Please note the following additions to the DSF:
+  # - When dealing with coordinates, the SRID must be specified with the srid key.
+  # - When dealing with times, the time zone must be specified with the timezone key.
+  # - When dealing with dates or times, the format must be specified with the format key.
+
+  fields:
+
+    timestamp:
+      description: Timestamp in format yyyy-mm-dd hh:mm:ss.fff UTC.
+
+      timezone: UTC
+      data_precision: 10
+      unit: s
+      sample_rate: 1hz
+      origin: The data collection app
+      type: string
+      range: 2023-06-29 - 2023-07-27
+      quality: High
+
+    latitude:
+      description: The GNSS latitude from the data collection app.
+
+      srid: 4326
+      data_precision: 8
+      unit: degrees
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: float
+      range: 0-180
+      error_codes: Repeated value from the previous row means that there was no new position for this row.
+      quality: Usually within 3 meters.
+      availability: Unknown
+
+    longitude:
+      description: The GNSS latitude from the data collection app.
+
+      srid: 4326
+      data_precision: 8
+      unit: degrees
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: float
+      range: 0-180
+      error_codes: Repeated value from the previous row means that there was no new position for this row.
+      quality: Usually within 3 meters.
+
+    network-code:
+      description: | 
+        Home network identity (HNI), also known in international roaming contexts as the PLMN (Public Land Mobile Network), 
+        identifies the country and network. Format is a string of 6 digits.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      error_codes: '000000' is used if the data collection app is not connected to a network.
+      quality: High
+
+    country:
+      description: | 
+        The country for the network operator the data collection app is connected to.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      error_codes: 'XX' is used if the data collection app is not connected to a network.
+      quality: High
+
+    operator:
+      description: | 
+        Name of the network operator the data collection app is connected to.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      error_codes: 'NoNetwork' is used if the data collection app is not connected to a network.
+      quality: High
+      availability: Unknown
+
+    unknown-13-1:
+      description: | 
+        Unknown. 
+        
+        Value distribution:
+        13: 94%
+        2: 4%
+        15: 2%
+        Other: <1%
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+
+    technology:
+      description: | 
+        The mobile network technology used. I.e LTE, 5G etc.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      error_codes: 'Unknown' is used if the data collection app cannot decide on the technology.
+      quality: High
+
+    unknown-13-2:
+      description: | 
+        Unknown. 
+        
+        Value distribution:
+        13: 94%
+        2: 4%
+        15: 2%
+        Other: <1%
+        Looks equal to unknown-13-1
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+
+    unknown-0-1:
+      description: | 
+        Unknown. 
+        
+        Value distribution:
+        0: 50%
+        3: 41% 
+        1: 9%
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+
+    unknown-0-2:
+      description: | 
+        Unknown. 
+        
+        Value distribution:
+        0: >99%
+        1: <1%
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+
+    service:
+      description: | 
+        The service level for the mobile network the data collection app is using.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      error_codes: 'No service' is used if the data collection app is not connected to a network.
+      quality: High
+      enumeration_specification: |
+        Normal service, roaming
+        Normal service
+        No service
+
+    signal_strength:
+      description: | 
+        The signal strength for the mobile network the data collection app is connected to.
+
+      unit: decibel-milliwatts
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: float
+      quality: High
+
+    unknown-5:
+      description: | 
+        Unknown. 
+        
+        Value distribution:
+        5: 100%
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: float
+
+    sim_card_status:
+      description: | 
+        Status for the SIM-card used by the data collection app.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      quality: High
+      enumeration_specification: |
+        Ready
+
+    cell_information:
+      description: | 
+        Details on the current mobile network tower that is serving us right now. Subsequent rows are candidate cells.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
