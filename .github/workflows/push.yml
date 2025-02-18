@@ -35,7 +35,10 @@ jobs:
         run: python3 yaml-files/.src/createDB.py yaml-files/
 
       - name: Show Database file
-        run: ls -lah data/
+        run: | 
+          ls -lah data/
+          git check-ignore -v data/metadata.db || echo "File is not ignored"
+          git status
       
       - name: config git settings
         run: |
