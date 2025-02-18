@@ -34,6 +34,9 @@ jobs:
       - name: create Database
         run: python3 yaml-files/.src/createDB.py yaml-files/
 
+      - name: Show Database file
+        run: ls -lah data/
+      
       - name: config git settings
         run: |
           git config --global user.name 'push repo'
