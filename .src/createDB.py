@@ -91,7 +91,12 @@ def main():
     dictData = transformData(yamlData, config["requiredFields"])
     dictData = filterData(dictData)
 
-    db = sqlite_utils.Database(config["dbName"], recreate=True)
+    # db = sqlite_utils.Database(config["dbName"], recreate=True) OLD CODE
+    db_path = os.path.join(pathToBaseDir, config["dbName"])
+    # ensure parent directory exists
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)  
+    db = sqlite_utils.Database(db_path, recreate=True)
+
     db[config["tableName"]].upsert_all(dictData, pk=config["pk"], alter=True)
 
 
