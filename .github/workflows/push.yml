@@ -45,9 +45,6 @@ jobs:
           git config --global user.name 'push repo'
           git config --global user.email 'not@important.com'
 
-      - name: check permissions
-        run: chmod u+w data/ || echo "permissions failed"
-
       - name: commit database
         run: |
           git add -f data/metadata.db
