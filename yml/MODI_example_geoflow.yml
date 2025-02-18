@@ -7,7 +7,7 @@
 # The description must be complete and self-contained, but can contain links.
 # to images and further information (but keep in mind that the description
 # must make sense even if those links should stop working.)
-# Multiline strings can be written by starting the value with a pipe symbol (|). 
+# Multiline strings can be written by starting the value with a pipe symbol (|)..
 summary:
 
   why_was_it_collected: |
