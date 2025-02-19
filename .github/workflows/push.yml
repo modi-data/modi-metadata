@@ -45,12 +45,6 @@ jobs:
           ls -lah data/
           git check-ignore -v data/metadata.db || echo "File is not ignored"
           git status
-
-      - name: commit database test
-        run: |
-          git add -f ./yaml-files/data/metadata.db
-          git status
-          git add -f data/metadata.db
       
       - name: config git settings
         run: |
@@ -61,7 +55,9 @@ jobs:
 
       - name: commit database
         run: |
-          git add -f ./yaml-files/data/metadata.db
+          cd yaml-files
+          ls
+          git add -f data/metadata.db
           git status
           git commit -m 'DATABASE'
 
