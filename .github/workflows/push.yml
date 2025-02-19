@@ -55,8 +55,8 @@ jobs:
 
       - name: commit database
         run: |
+          git add -f ./yaml-files/data/metadata.db
           git status
-          git add -f yaml-files/data/metadata.db
           git commit -m 'DATABASE'
 
       - name: push
