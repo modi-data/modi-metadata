@@ -31,11 +31,6 @@ jobs:
       - name: Install dependencies for python script
         run: pip3 install -r yaml-files/.src/requirements.txt
 
-      - name: Ensure database is not tracked
-        run: |
-          git rm --cached data/metadata.db || echo "Database file not tracked"
-          git status
-
       - name: create Database
         run: python3 yaml-files/.src/createDB.py yaml-files/
 
