@@ -31,8 +31,14 @@ jobs:
       - name: Install dependencies for python script
         run: pip3 install -r yaml-files/.src/requirements.txt
 
+      - name: first testRun ls
+        run: ls -la -R
+
       - name: create Database
         run: python3 yaml-files/.src/createDB.py yaml-files/
+
+      - name: first testRun ls
+        run: ls -la -R
 
       - name: Show Database file
         run: | 
