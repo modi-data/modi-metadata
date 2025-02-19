@@ -54,6 +54,7 @@ jobs:
 
       - name: commit database
         run: |
+          git status
           git add -f data/metadata.db
           git commit -m 'DATABASE'
 
