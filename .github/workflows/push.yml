@@ -47,8 +47,10 @@ jobs:
       
       - name: config git settings
         run: |
+          git status
           git config --global user.name 'push repo'
           git config --global user.email 'not@important.com'
+          git status
 
       - name: commit database
         run: |
