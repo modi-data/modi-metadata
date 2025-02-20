@@ -53,6 +53,7 @@ jobs:
           git config --global user.email 'not@important.com'
           git status
 
+      # cd yaml-files is needed to make it work. git add <full file path> does not work
       - name: commit database
         run: |
           cd yaml-files
