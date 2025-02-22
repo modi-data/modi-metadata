@@ -59,17 +59,20 @@ jobs:
       - name: Print current directory
         run: pwd
         
-      # cd yaml-files is needed to make it work. git add <full file path> does not work
-      - name: commit database
+      - name: Copy database from main repo to receiver repo
         run: |
-          ls
-          cd yaml-files
+          cp yaml-files/data/metadata.db data/  # Copy the file into the correct repo
+      
+      - name: Verify copied file
+        run: |
+          ls -la data/  # Check that metadata.db is in the receiver repo
+      
+      - name: Commit database to receiver repo
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'github-actions@github.com'
           git add -f data/metadata.db
-          git status
-          git commit -m 'DATABASE'
-
-      - name: Show last modified time of metadata.db
-        run: stat yaml-files/data/metadata.db
-  
-      - name: push
+          git commit -m 'Update database file'
+      
+      - name: Push database to receiver repo
         run: git push origin main
