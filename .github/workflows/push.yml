@@ -34,8 +34,14 @@ jobs:
       - name: first testRun ls
         run: ls -la -R
 
+      - name: Show last modified time of metadata.db
+        run: stat yaml-files/data/metadata.db
+
       - name: create Database
-        run: python3 yaml-files/.src/createDB.py yaml-files/
+        run: python3 yaml-files/.src/createDB.py yaml-files/\
+
+      - name: Show last modified time of metadata.db
+        run: stat yaml-files/data/metadata.db
 
       - name: first testRun ls
         run: ls -la -R
@@ -60,11 +66,13 @@ jobs:
       - name: commit database
         run: |
           ls
-          cd data
-          ls
-          git add -f metadata.db
+          cd yaml-files
+          git add -f data/metadata.db
           git status
           git commit -m 'DATABASE'
 
+      - name: Show last modified time of metadata.db
+        run: stat yaml-files/data/metadata.db
+  
       - name: push
         run: git push origin main
