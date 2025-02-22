@@ -53,13 +53,16 @@ jobs:
           git config --global user.email 'not@important.com'
           git status
 
+      - name: Print current directory
+        run: pwd
+        
       # cd yaml-files is needed to make it work. git add <full file path> does not work
       - name: commit database
         run: |
           ls
           cd data
           ls
-          git add -f data/metadata.db
+          git add -f metadata.db
           git status
           git commit -m 'DATABASE'
 
