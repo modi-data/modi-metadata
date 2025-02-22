@@ -34,9 +34,6 @@ jobs:
       - name: first testRun ls
         run: ls -la -R
 
-      - name: Show last modified time of metadata.db
-        run: stat yaml-files/data/metadata.db
-
       - name: create Database
         run: python3 yaml-files/.src/createDB.py yaml-files/\
 
