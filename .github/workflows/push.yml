@@ -31,46 +31,17 @@ jobs:
       - name: Install dependencies for python script
         run: pip3 install -r yaml-files/.src/requirements.txt
 
-      - name: first testRun ls
-        run: ls -la -R
-
       - name: create Database
         run: python3 yaml-files/.src/createDB.py yaml-files/\
 
-      - name: Show last modified time of metadata.db
-        run: stat yaml-files/data/metadata.db
-
-      - name: first testRun ls
-        run: ls -la -R
-
-      - name: Show Database file
-        run: | 
-          ls -lah data/
-          git check-ignore -v data/metadata.db || echo "File is not ignored"
-          git status
-      
-      - name: config git settings
-        run: |
-          git status
-          git config --global user.name 'push repo'
-          git config --global user.email 'not@important.com'
-          git status
-
-      - name: Print current directory
-        run: pwd
-        
       - name: Copy database from main repo to receiver repo
         run: |
-          cp yaml-files/data/metadata.db data/  # Copy the file into the correct repo
-      
-      - name: Verify copied file
-        run: |
-          ls -la data/  # Check that metadata.db is in the receiver repo
-      
+          cp yaml-files/data/metadata.db data/
+
       - name: Commit database to receiver repo
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'github-actions@github.com'
+          git config --global user.name 'push repo'
+          git config --global user.email 'not@important.com'
           git add -f data/metadata.db
           git commit -m 'Update database file'
       
