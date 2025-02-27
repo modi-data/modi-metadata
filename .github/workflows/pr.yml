@@ -27,6 +27,3 @@ jobs:
 
       - name: create Database
         run: python3 yaml-files/.src/createDB.py yaml-files/
-
-      - name: show files
-        run: ls -la -R
