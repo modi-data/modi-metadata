@@ -8,7 +8,7 @@ on:
       - '.src/config.json'
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write  # Needed to enable auto-merge
   issues: write         # Needed to add labels
 
