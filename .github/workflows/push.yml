@@ -1,12 +1,10 @@
 name: Deploy database
 run-name: ${{ github.actor }} is deploying the database
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'yml/*.yml'
-      - '.src/config.json'
+  workflow_run:
+    workflows: ["File checks"]
+    types:
+      - completed
 jobs:
   build-db-and-push:
     runs-on: ubuntu-latest
