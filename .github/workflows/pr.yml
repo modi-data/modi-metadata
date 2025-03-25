@@ -7,6 +7,11 @@ on:
       - 'yml/*.yml'
       - '.src/config.json'
 
+permissions:
+  contents: read
+  pull-requests: write  # Needed to enable auto-merge
+  issues: write         # Needed to add labels
+
 jobs:
   check-file-structure:
     runs-on: ubuntu-latest
