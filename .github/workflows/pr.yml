@@ -39,6 +39,8 @@ jobs:
     needs: check-file-structure  
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository  # Required to make 'gh pr merge' work
+        uses: actions/checkout@v4
       - name: Add automerge label
         uses: actions/github-script@v7
         with:
