@@ -41,6 +41,9 @@ jobs:
     steps:
       - name: Checkout Repository  # Required to make 'gh pr merge' work
         uses: actions/checkout@v4
+      - name: Get PR Number
+        id: get_pr_number
+        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Get PR Branch Name
         id: get_branch
         run: echo "BRANCH_NAME=$(gh pr view $PR_URL --json headRefName -q .headRefName)" >> $GITHUB_ENV
