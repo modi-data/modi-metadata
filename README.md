@@ -33,3 +33,7 @@ You are done!
 
 If you received an error in the last step then that probably means that you accidentally tried to change a file that you are not allowed to change. Make sure that every file you uploaded is of the form yml/*.yml (it is in the yml folder and has .yml as a file extension).
 If you encounter any other problems contact the admin.
+
+# Architecture
+This repository represents the modi-metadata section of the architecture displayed below. This repository is responisble for receiving the metadata files from the upload site/authenticationserver, storing the metadata files, constructing the database file from these metadata files and sending the newly created databse file to the modi-data.github.io repository.
+![Alt text](Modi-Architecture.drawio.png)
