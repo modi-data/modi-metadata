@@ -24,6 +24,8 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           path: yaml-files
+          fetch-depth: 0  # Fetch full history
+          submodules: recursive  # In case you have submodules
 
       - name: Merge main into PR branch
         run: |
