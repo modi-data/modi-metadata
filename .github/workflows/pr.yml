@@ -29,6 +29,7 @@ jobs:
 
       - name: Merge main into PR branch
         run: |
+          cd yaml-files
           git fetch origin main
           git merge origin/main
           git push origin HEAD:${{ github.head_ref }}
