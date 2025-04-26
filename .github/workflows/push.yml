@@ -5,6 +5,9 @@ on:
     workflows: ["File checks"]
     types:
       - completed
+concurrency:
+  group: yaml-processing-pipeline
+  cancel-in-progress: false
 jobs:
   build-db-and-push:
     runs-on: ubuntu-latest
