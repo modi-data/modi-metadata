@@ -37,23 +37,27 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Save the current HEAD before rebasing
-          git rev-parse HEAD > /tmp/original_head
-          
-          # Fetch main and perform rebase
+          # Check if this PR is based on the current main branch
           git fetch origin main
-          git rebase origin/main || (echo "Rebase failed" && exit 1)
+          BASE_SHA=$(git merge-base HEAD origin/main)
+          MAIN_SHA=$(git rev-parse origin/main)
           
-          # Check if HEAD changed during rebase
-          if [ "$(git rev-parse HEAD)" = "$(cat /tmp/original_head)" ]; then
-            echo "No changes after rebase - PR is already up to date with main."
+          if [ "$BASE_SHA" = "$MAIN_SHA" ]; then
+            echo "PR is already based on current main branch, no rebase needed."
             echo "force_push_needed=false" >> $GITHUB_ENV
             echo "force_push_needed=false" >> $GITHUB_OUTPUT
           else
-            echo "Changes detected after rebase, force pushing..."
-            git push --force-with-lease origin HEAD:${{ github.head_ref }}
-            echo "force_push_needed=true" >> $GITHUB_ENV
-            echo "force_push_needed=true" >> $GITHUB_OUTPUT
+            echo "PR is based on an older version of main, rebasing..."
+            if git rebase origin/main; then
+              echo "Rebase successful, force pushing..."
+              git push --force-with-lease origin HEAD:${{ github.head_ref }}
+              echo "force_push_needed=true" >> $GITHUB_ENV
+              echo "force_push_needed=true" >> $GITHUB_OUTPUT
+            else
+              echo "Rebase failed, aborting."
+              git rebase --abort
+              exit 1
+            fi
           fi
             
       - name: Skip if force push happened
