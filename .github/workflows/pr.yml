@@ -34,7 +34,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git rebase origin/main
-          git push --force origin HEAD:${{ github.head_ref }}
+          git push --force-with-lease origin HEAD:${{ github.head_ref }}
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -81,5 +81,22 @@ jobs:
 
       - name: Enable Auto-Merge
         run: gh pr merge --auto --squash $PR_NUMBER
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for PR to close
+        run: |
+          for i in {1..30}; do
+            state=$(gh pr view ${{ github.event.pull_request.number }} --json state -q .state)
+            echo "Current PR state: $state"
+            if [ "$state" = "MERGED" ] || [ "$state" = "CLOSED" ]; then
+              echo "PR is merged or closed. Continuing..."
+              exit 0
+            fi
+            echo "PR still open. Sleeping for 10 seconds..."
+            sleep 10
+          done
+          echo "Timed out waiting for PR to close."
+          exit 1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
