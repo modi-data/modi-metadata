@@ -10,7 +10,11 @@ permissions:
   contents: write
   pull-requests: write  # Needed to enable auto-merge
   issues: write         # Needed to add labels
-
+  
+concurrency:
+  group: yaml-processing-pipeline
+  cancel-in-progress: false
+  
 jobs:
   check-file-structure:
     runs-on: ubuntu-latest
