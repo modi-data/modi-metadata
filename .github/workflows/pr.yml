@@ -39,41 +39,41 @@ jobs:
           
           if git diff --quiet origin/${{ github.head_ref }}; then
             echo "No changes after rebase."
-            echo "force_push_needed=false" >> $GITHUB_OUTPUT
+            echo "force_push_needed=false" >> $GITHUB_ENV
           else
             echo "Changes detected after rebase, force pushing..."
             git push --force-with-lease origin HEAD:${{ github.head_ref }}
-            echo "force_push_needed=true" >> $GITHUB_OUTPUT
+            echo "force_push_needed=true" >> $GITHUB_ENV
           fi
       
       - name: Skip if force push happened
-        if: steps.rebase.outputs.force_push_needed == 'true'
+        if: needs.check-file-structure.outputs.force_push_needed == 'true'
         run: |
           echo "Force push happened, exiting early."
           exit 0
 
       - name: Setup Python
-        if: steps.rebase.outputs.force_push_needed == 'false'
+        if: needs.check-file-structure.outputs.force_push_needed == 'false'
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Install dependencies for Python script
-        if: steps.rebase.outputs.force_push_needed == 'false'
+        if: needs.check-file-structure.outputs.force_push_needed == 'false'
         run: pip3 install -r yaml-files/.src/requirements.txt
       
       - name: Make "data" dir to prevent createDB from complaining
-        if: steps.rebase.outputs.force_push_needed == 'false'
+        if: needs.check-file-structure.outputs.force_push_needed == 'false'
         run: mkdir "data"
 
       - name: Create Database
-        if: steps.rebase.outputs.force_push_needed == 'false'
+        if: needs.check-file-structure.outputs.force_push_needed == 'false'
         run: python3 yaml-files/.src/createDB.py yaml-files/
 
   enable-auto-merge:
     needs: check-file-structure
     runs-on: ubuntu-latest
-    if: steps.rebase.outputs.force_push_needed == 'false'
+    if: needs.check-file-structure.outputs.force_push_needed == 'false'
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
