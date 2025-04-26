@@ -55,15 +55,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update PR with latest from main
-        run: |
-          git fetch origin main
-          git checkout $BRANCH_NAME
-          git merge origin/main
-          git push origin $BRANCH_NAME
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Add automerge label
         uses: actions/github-script@v7
         with:
