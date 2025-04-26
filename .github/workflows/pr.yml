@@ -34,18 +34,24 @@ jobs:
           cd yaml-files
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Save the current HEAD before rebasing
+          git rev-parse HEAD > /tmp/original_head
+          
+          # Fetch main and perform rebase
           git fetch origin main
           git rebase origin/main || (echo "Rebase failed" && exit 1)
           
-          if git diff --quiet origin/${{ github.head_ref }}; then
-            echo "No changes after rebase."
+          # Check if HEAD changed during rebase
+          if [ "$(git rev-parse HEAD)" = "$(cat /tmp/original_head)" ]; then
+            echo "No changes after rebase - PR is already up to date with main."
             echo "force_push_needed=false" >> $GITHUB_ENV
           else
             echo "Changes detected after rebase, force pushing..."
             git push --force-with-lease origin HEAD:${{ github.head_ref }}
             echo "force_push_needed=true" >> $GITHUB_ENV
           fi
-      
+            
       - name: Skip if force push happened
         if: needs.check-file-structure.outputs.force_push_needed == 'true'
         run: |
