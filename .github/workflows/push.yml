@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: yaml-files
+          ref: main
 
       - name: Setup python
         uses: actions/setup-python@v4
