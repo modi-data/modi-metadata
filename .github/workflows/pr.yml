@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} is trying to add a new file
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
     paths:
       - 'yml/*.yml'
 
@@ -33,8 +34,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git rebase origin/main
-          git push --force-with-lease origin HEAD:${{ github.head_ref }}
+          git rebase origin/main || (echo "Rebase failed" && exit 1)
+          
+          # Detect if rebase resulted in a change
+          if git diff --quiet origin/${{ github.head_ref }}; then
+            echo "No changes after rebase."
+          else
+            echo "Changes detected after rebase, force pushing..."
+            git push --force-with-lease origin HEAD:${{ github.head_ref }}
+            
+            echo "Rebase caused changes and push was done. Exiting workflow early."
+            exit 0  # STOP here — the new workflow run will handle everything
+          fi
 
       - name: Setup Python
         uses: actions/setup-python@v4
