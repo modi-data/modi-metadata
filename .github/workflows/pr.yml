@@ -53,27 +53,27 @@ jobs:
           fi
             
       - name: Skip if force push happened
-        if: needs.check-file-structure.outputs.force_push_needed == 'true'
+        if: env.force_push_needed == 'true'
         run: |
           echo "Force push happened, exiting early."
           exit 0
 
       - name: Setup Python
-        if: needs.check-file-structure.outputs.force_push_needed == 'false'
+        if: env.force_push_needed == 'false'
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Install dependencies for Python script
-        if: needs.check-file-structure.outputs.force_push_needed == 'false'
+        if: env.force_push_needed == 'false'
         run: pip3 install -r yaml-files/.src/requirements.txt
       
       - name: Make "data" dir to prevent createDB from complaining
-        if: needs.check-file-structure.outputs.force_push_needed == 'false'
+        if: env.force_push_needed == 'false'
         run: mkdir "data"
 
       - name: Create Database
-        if: needs.check-file-structure.outputs.force_push_needed == 'false'
+        if: env.force_push_needed == 'false'
         run: python3 yaml-files/.src/createDB.py yaml-files/
 
   enable-auto-merge:
