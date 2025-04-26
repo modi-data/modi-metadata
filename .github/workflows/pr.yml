@@ -6,8 +6,6 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - 'yml/*.yml'
-  pull_request_target:
-    types: [synchronize]
 
 permissions:
   contents: write
