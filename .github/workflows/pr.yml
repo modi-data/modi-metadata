@@ -29,7 +29,7 @@ concurrency:
   cancel-in-progress: false
   
 jobs:
-  check-file-structure:
+  check-file-structure-job:
     runs-on: ubuntu-latest
     outputs:
       pr_number: ${{ steps.get_pr_info.outputs.pr_number }}
