@@ -120,7 +120,7 @@ jobs:
       - name: Create status check for PR
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TRIGGER_PR_WORKFLOW }}
           script: |
             // Always get the current PR HEAD SHA to ensure we're working with the latest commit
             // This is essential after a rebase operation
