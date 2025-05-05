@@ -146,7 +146,7 @@ jobs:
               repo: context.repo.repo,
               sha: targetSha,
               state: "success",
-              context: "File checks / check-file-structure",
+              context: "check-file-structure",
               description: "File structure validation passed"
             });
 
