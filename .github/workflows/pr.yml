@@ -35,7 +35,6 @@ jobs:
       pr_number: ${{ steps.get_pr_info.outputs.pr_number }}
       pr_head_sha: ${{ steps.get_pr_info.outputs.pr_head_sha }}
       pr_head_ref: ${{ steps.get_pr_info.outputs.pr_head_ref }}
-      rebase_performed: ${{ steps.rebase_check.outputs.rebase_performed }}
     steps:
       - name: Get PR info
         id: get_pr_info
@@ -123,26 +122,23 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prHeadSha = "${{ steps.get_pr_info.outputs.pr_head_sha }}";
-            const rebasePerformed = "${{ steps.rebase_check.outputs.rebase_performed }}" === "true";
-            
-            // If we just did a rebase+force push, we need to get the new HEAD SHA
-            let targetSha = prHeadSha;
-            if (rebasePerformed) {
-              try {
-                const pr = await github.rest.pulls.get({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  pull_number: parseInt("${{ steps.get_pr_info.outputs.pr_number }}")
-                });
-                targetSha = pr.data.head.sha;
-              } catch (error) {
-                console.log(`Error getting updated PR SHA: ${error}`);
-                // Fall back to the original SHA
-              }
+            // Always get the current PR HEAD SHA to ensure we're working with the latest commit
+            // This is essential after a rebase operation
+            let targetSha;
+            try {
+              const pr = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: parseInt("${{ steps.get_pr_info.outputs.pr_number }}")
+              });
+              targetSha = pr.data.head.sha;
+              console.log(`Retrieved current PR HEAD SHA: ${targetSha}`);
+            } catch (error) {
+              console.log(`Error getting current PR SHA: ${error}`);
+              // Fall back to the original SHA from the event trigger
+              targetSha = "${{ steps.get_pr_info.outputs.pr_head_sha }}";
+              console.log(`Falling back to original SHA: ${targetSha}`);
             }
-            
-            console.log(`Creating status check on SHA: ${targetSha}`);
             
             // Create a status check
             await github.rest.repos.createCommitStatus({
