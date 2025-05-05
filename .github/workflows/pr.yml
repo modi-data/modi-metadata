@@ -3,6 +3,10 @@ run-name: ${{ github.actor }} is trying to add a new file
 
 on:
   workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Pull request number'
+        required: true
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
@@ -65,7 +69,7 @@ jobs:
         if: env.force_push_needed == 'true'
         run: |
           echo "Force push happened, exiting early."
-          gh workflow run "pr.yml" --repo "${{ github.repository }}" --ref "${{ github.head_ref }}"
+          gh workflow run "pr.yml" --repo "${{ github.repository }}" --ref "${{ github.head_ref }}" -f pr_number="${{ github.event.pull_request.number }}"
           exit 0
         env:
           GH_TOKEN: ${{ secrets.TRIGGER_PR_WORKFLOW }}
@@ -111,12 +115,20 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const prNumber = 
+              (github.event.inputs && github.event.inputs.pr_number) ||
+              (github.event.pull_request && github.event.pull_request.number); 
+      
+            if (!prNumber) {
+              throw new Error("Pull request number could not be determined.");
+            }
+      
             github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
+              issue_number: parseInt(prNumber, 10),
               labels: ["automerge"]
-            })
+            });
 
       - name: Enable Auto-Merge
         run: gh pr merge --auto --squash $PR_NUMBER
