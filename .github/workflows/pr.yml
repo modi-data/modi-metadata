@@ -165,7 +165,7 @@ jobs:
         run: python3 yaml-files/.src/createDB.py yaml-files/
 
   enable-auto-merge:
-    needs: check-file-structure
+    needs: check-file-structure-job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -173,7 +173,7 @@ jobs:
 
       - name: Set PR Number
         id: set_pr
-        run: echo "PR_NUMBER=${{ needs.check-file-structure.outputs.pr_number }}" >> $GITHUB_ENV
+        run: echo "PR_NUMBER=${{ needs.check-file-structure-job.outputs.pr_number }}" >> $GITHUB_ENV
 
       - name: Get PR Branch Name
         id: get_branch
@@ -206,7 +206,7 @@ jobs:
             const pr = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: parseInt("${{ needs.check-file-structure.outputs.pr_number }}")
+              pull_number: parseInt("${{ needs.check-file-structure-job.outputs.pr_number }}")
             });
             
             await github.rest.repos.createCommitStatus({
