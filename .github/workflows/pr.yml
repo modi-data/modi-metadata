@@ -218,29 +218,29 @@ jobs:
               description: "Auto-merge enabled"
             });
             
-  wait-for-merge:
-    needs: enable-auto-merge
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  # wait-for-merge:
+  #   needs: enable-auto-merge
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
 
-      - name: Set PR number
-        run: echo "PR_NUMBER=${{ needs.enable-auto-merge.outputs.pr_number }}" >> $GITHUB_ENV
+  #     - name: Set PR number
+  #       run: echo "PR_NUMBER=${{ needs.enable-auto-merge.outputs.pr_number }}" >> $GITHUB_ENV
         
-      - name: Wait for PR to close
-        run: |
-          for i in {1..30}; do
-            state=$(gh pr view ${{ env.PR_NUMBER }} --json state -q .state)
-            echo "Current PR state: $state"
-            if [ "$state" = "MERGED" ] || [ "$state" = "CLOSED" ]; then
-              echo "PR is merged or closed. Continuing..."
-              exit 0
-            fi
-            echo "PR still open. Sleeping for 10 seconds..."
-            sleep 10
-          done
-          echo "Timed out waiting for PR to close."
-          exit 1
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Wait for PR to close
+  #       run: |
+  #         for i in {1..30}; do
+  #           state=$(gh pr view ${{ env.PR_NUMBER }} --json state -q .state)
+  #           echo "Current PR state: $state"
+  #           if [ "$state" = "MERGED" ] || [ "$state" = "CLOSED" ]; then
+  #             echo "PR is merged or closed. Continuing..."
+  #             exit 0
+  #           fi
+  #           echo "PR still open. Sleeping for 10 seconds..."
+  #           sleep 10
+  #         done
+  #         echo "Timed out waiting for PR to close."
+  #         exit 1
+  #       env:
+  #         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
