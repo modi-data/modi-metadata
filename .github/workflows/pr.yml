@@ -21,6 +21,8 @@ permissions:
   contents: write
   pull-requests: write  # Needed to enable auto-merge
   issues: write         # Needed to add labels
+  checks: write         # Added this to create check runs
+  statuses: write       # Added this to create commit statuses
   
 concurrency:
   group: yaml-processing-pipeline
