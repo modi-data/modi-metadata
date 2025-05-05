@@ -222,6 +222,12 @@ jobs:
     needs: enable-auto-merge
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set PR number
+        run: echo "PR_NUMBER=${{ needs.enable-auto-merge.outputs.pr_number }}" >> $GITHUB_ENV
+        
       - name: Wait for PR to close
         run: |
           for i in {1..30}; do
@@ -238,4 +244,3 @@ jobs:
           exit 1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ needs.check-file-structure.outputs.pr_number }}
