@@ -140,15 +140,15 @@ jobs:
               console.log(`Falling back to original SHA: ${targetSha}`);
             }
             
-            // Create a status check
-            await github.rest.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: targetSha,
-              state: "success",
-              context: "File checks / check-file-structure",
-              description: "File structure validation passed"
-            });
+        # // Create a status check
+        # await github.rest.repos.createCommitStatus({
+        #   owner: context.repo.owner,
+        #   repo: context.repo.repo,
+        #   sha: targetSha,
+        #   state: "success",
+        #   context: "File checks / check-file-structure",
+        #   description: "File structure validation passed"
+        # });
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -209,14 +209,14 @@ jobs:
               pull_number: parseInt("${{ needs.check-file-structure.outputs.pr_number }}")
             });
             
-            await github.rest.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: pr.data.head.sha,
-              state: "success",
-              context: "File checks / enable-auto-merge",
-              description: "Auto-merge enabled"
-            });
+        # await github.rest.repos.createCommitStatus({
+        #   owner: context.repo.owner,
+        #   repo: context.repo.repo,
+        #   sha: pr.data.head.sha,
+        #   state: "success",
+        #   context: "File checks / enable-auto-merge",
+        #   description: "Auto-merge enabled"
+        # });
 
       - name: Wait for PR to close
         run: |
