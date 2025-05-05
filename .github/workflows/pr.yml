@@ -140,15 +140,15 @@ jobs:
               console.log(`Falling back to original SHA: ${targetSha}`);
             }
             
-        # // Create a status check
-        # await github.rest.repos.createCommitStatus({
-        #   owner: context.repo.owner,
-        #   repo: context.repo.repo,
-        #   sha: targetSha,
-        #   state: "success",
-        #   context: "File checks / check-file-structure",
-        #   description: "File structure validation passed"
-        # });
+            // Create a status check
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: targetSha,
+              state: "success",
+              context: "File checks / check-file-structure",
+              description: "File structure validation passed"
+            });
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -209,19 +209,23 @@ jobs:
               pull_number: parseInt("${{ needs.check-file-structure.outputs.pr_number }}")
             });
             
-        # await github.rest.repos.createCommitStatus({
-        #   owner: context.repo.owner,
-        #   repo: context.repo.repo,
-        #   sha: pr.data.head.sha,
-        #   state: "success",
-        #   context: "File checks / enable-auto-merge",
-        #   description: "Auto-merge enabled"
-        # });
-
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: pr.data.head.sha,
+              state: "success",
+              context: "File checks / enable-auto-merge",
+              description: "Auto-merge enabled"
+            });
+            
+  wait-for-merge:
+    needs: enable-auto-merge
+    runs-on: ubuntu-latest
+    steps:
       - name: Wait for PR to close
         run: |
           for i in {1..30}; do
-            state=$(gh pr view $PR_NUMBER --json state -q .state)
+            state=$(gh pr view ${{ env.PR_NUMBER }} --json state -q .state)
             echo "Current PR state: $state"
             if [ "$state" = "MERGED" ] || [ "$state" = "CLOSED" ]; then
               echo "PR is merged or closed. Continuing..."
@@ -234,3 +238,4 @@ jobs:
           exit 1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ needs.check-file-structure.outputs.pr_number }}
