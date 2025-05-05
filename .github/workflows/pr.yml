@@ -102,7 +102,7 @@ jobs:
 
       - name: Get PR Number
         id: get_pr_number
-        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+        run: echo "PR_NUMBER=${{ github.event.pull_request.number || github.event.inputs.pr_number }}" >> $GITHUB_ENV
 
       - name: Get PR Branch Name
         id: get_branch
@@ -115,18 +115,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prNumber = 
-              (github.event.inputs && github.event.inputs.pr_number) ||
-              (github.event.pull_request && github.event.pull_request.number); 
-      
-            if (!prNumber) {
-              throw new Error("Pull request number could not be determined.");
-            }
-      
             github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: parseInt(prNumber, 10),
+              issue_number: $PR_NUMBER,
               labels: ["automerge"]
             });
 
@@ -135,14 +127,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Show PR number
-        run: |
-          echo "This PR number is: ${{ github.event.pull_request.number }}"
-
       - name: Wait for PR to close
         run: |
           for i in {1..30}; do
-            state=$(gh pr view ${{ github.event.pull_request.number }} --json state -q .state)
+            state=$(gh pr view $PR_NUMBER --json state -q .state)
             echo "Current PR state: $state"
             if [ "$state" = "MERGED" ] || [ "$state" = "CLOSED" ]; then
               echo "PR is merged or closed. Continuing..."
