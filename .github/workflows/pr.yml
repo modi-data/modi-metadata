@@ -4,8 +4,8 @@ run-name: ${{ github.actor }} is trying to add a new file
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - 'yml/*.yml'
+    # paths:
+    #   - 'yml/*.yml'
 
 permissions:
   contents: write
