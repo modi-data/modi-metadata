@@ -56,6 +56,7 @@ jobs:
             if git rebase origin/main; then
               echo "Rebase successful, force pushing..."
               git commit --allow-empty -m "Trigger workflow run"
+              git fetch origin ${GITHUB_HEAD_REF}
               git push --force-with-lease https://${{ secrets.GH_PAT_REPO_PUSH }}@github.com/${{ github.repository }} HEAD:${{ github.head_ref }}
               echo "force_push_needed=true" >> $GITHUB_ENV
               echo "force_push_needed=true" >> $GITHUB_OUTPUT
