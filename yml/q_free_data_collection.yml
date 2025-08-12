@@ -1,0 +1,271 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+# The summary should contain a thorough description of the study design and execution.
+# The description must be complete and self-contained, but can contain links
+# to images and further information (but keep in mind that the description
+# must make sense even if those links should stop working.)
+# Multiline strings can be written by starting the value with a pipe symbol (|).
+summary:
+  why_was_it_collected: |
+    To investigate PDI and vehicles
+    barriers for L4 driving the full
+    stretch Rotterdam-Oslo.
+
+  how_was_the_collection_executed: |
+    Q-Free drove the entire MODI test route (with some minor detours) from Oslo to Rotterdam, then
+    back from Rotterdam to Oslo. The Oslo – Rotterdam trip went from Oslo, through Gothenburg,
+    Copenhagen, Hamburg and ended at Rotterdam, with an extra crossing of the border between
+    Germany and the Netherlands. The trip to Rotterdam started on March 27th, 2024, and ended on
+    March 30th, 2024.The return trip started in Rotterdam on April 4th 2024 and went through Bremen,
+    Hamburg, then a detour to Flensburg, then Copenhagen and ended in Oslo on April 7th 2024.
+
+  objectives: |
+    Mapping infrastructure status,
+    performing data collection and
+    analysis to assess the readiness
+
+  research_questions: |
+    How is the GNSS and mobile network connectivity in the MODI corridor between Oslo and Rotterdam?
+
+  experimental_plan: |
+    Three cell phones and three GNSS units were used to gather data from the drives. The cell phones
+    are:
+    • A Motorola G4 with Ice as the service provider (referred to as moto_g4-ice in the results)
+    • A Samsung S21 with Telenor as the service provider (referred to as sam-s21-telenor in the
+    results)
+    • A Samsung S21 with Telia as the service provider (referred to as sam-s21-telia in the
+    results)
+    The GNSS units used are:
+    • Ublox, tracking satellites in L1 band
+    • SonyL1, tracking satellites in L1 band
+    • SonyL1L5, tracking satellites in L1 and L5 bands
+
+  sample_selection_criteria: N/A
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Petter Arnesen, petter.arnesen@sintef.no
+
+  # A web address to download the data if applicable.
+  web_address: N/A
+
+  # Which entity produced this dataset
+  producer_of_data: Q-FREE
+
+  # Data set DOI if applicable
+  DOI: N/A
+
+  # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
+  # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
+  data_area: Europe
+
+  # Which type of data this is.
+  # Must be one or more of:
+  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure,
+  #     speed/acceleration, video, pictures, gnss, lidar, radar, weather, vehicle probe data, events, other.
+  # You may add multiple data types if relevant, separated by a comma.
+  data_type: mobile network, gnss
+
+  # Which of the use cases in MODI this dataset is related to.
+  # Must be one of: UCNL, UCGE, UCSE, UCNO, UCCCAM, Other tasks
+  modi_use_case: UCCCAM
+
+  # An approximate description of the size of this dataset
+  dataset_size: Approximately 100 MB.
+
+  # A tiny sample of the dataset to show how it looks (if possible).
+  dataset_example: |
+
+# 5.3.3 Administrative metadata
+# "Administrative metadata are collected for the effective operation and management of data
+# storage and catalogues. This administrative information, covering various topics, is stored
+# along with the datasets. From a FOT data re-use perspective, the key role of administrative
+# metadata is to cover access conditions, rights, ownership and constraints."
+administrative:
+  # The version number of this dataset, used to keep track of different
+  # versions if it is uploaded multiple times.
+  # The version number can be numeric, date-based, or anything else, but
+  # it must be easy to see which version is newer without further knowledge.
+  version_number: 1
+
+  # The date this dataset was uploaded. Must be in ISO 8601 format (YYYY-MM-DD).
+  archiving_date: 2025-08-12
+
+  # A unique identifier for this dataset. This will be used to identify this and
+  # future updates in the metadata database, and must never be changed after the
+  # dataset has been uploaded for the first time.
+  unique_dataset_id: modi_uc_ccam_qfree_oslo_rotterdam
+
+  # Who has rights to use this dataset?
+  rights: Open, see Access for contact info
+
+  # Does the dataset have a specific license for usage?
+  license: No
+
+  # Who can access the dataset?
+  access: Everyone, contact petter.arnesen@sintef.no
+
+  # Any constraints in usage of the dataset?
+  constraints: N/A
+
+  # Can the dataset be used for free, or does usage incur any costs/billing for the user?
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+
+  # When the data set will stop existing (for example due to privacy regulations).
+  # Must be in ISO 8601 format (YYYY-MM-DD).
+  data_end_of_life: 2026-03-31
+
+  # A more detailed description of the various processes of the data collection,
+  # for example the methods/tools used to collect the data, filtering, post-processing,
+  # storage file structure, etc.
+  # This should include information about relevant conditions during the data collection
+  # (for example weather, climate, time of day, etc).
+  # Each key under "processes" can be custom made, and there can be as many as is
+  # necessary. The proposed keys are just examples.
+  processes:
+    collection: |
+      Three cell phones and three GNSS units were used to gather data from the drives. The cell phones
+      are:
+      • A Motorola G4 with Ice as the service provider (referred to as moto_g4-ice in the results)
+      • A Samsung S21 with Telenor as the service provider (referred to as sam-s21-telenor in the
+      results)
+      • A Samsung S21 with Telia as the service provider (referred to as sam-s21-telia in the
+      results)
+      The GNSS units used are:
+      • Ublox, tracking satellites in L1 band
+      • SonyL1, tracking satellites in L1 band
+      • SonyL1L5, tracking satellites in L1 and L5 bands
+    filtering: |
+      This data set is the raw data, and has no filters.
+    aggregation: |
+      This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+# "Structural metadata are used to describe how the data are structured in relation to other
+# data. Data are organized into a system (e.g., a database and/or file system), a structure or
+# database schema and a data content format. The aim of structural metadata is to facilitate
+# the initial phase of data re-use by providing the necessary documentation about how the data
+# is organized. The description should include the file system, the file structure and how to
+# interpret the contents of a data container. All components of the dataset need to be
+# described."
+structural:
+  summary: |
+    Several data types were collected during this trip, including GNSS quality, LTE/5G connectivity and
+    video data.
+    Three cell phones and three GNSS units were used to gather data from the drives. The cell phones
+    are:
+    • A Motorola G4 with Ice as the service provider (referred to as moto_g4-ice in the results)
+    • A Samsung S21 with Telenor as the service provider (referred to as sam-s21-telenor in the
+    results)
+    • A Samsung S21 with Telia as the service provider (referred to as sam-s21-telia in the
+    results)
+    The GNSS units used are:
+    • Ublox, tracking satellites in L1 band
+    • SonyL1, tracking satellites in L1 band
+    • SonyL1L5, tracking satellites in L1 and L5 bands
+
+  # File format. Please include attributes such as delimiter for CSV, decimal separator,
+  # thousand separator (if any), and any other properties that is relevant for parsing the data.
+  file_format: The datasets are in multiple formats including text files (.txt), shape files (.shp) and Keyhole Markup language (.kml).
+
+  # Please describe the storage structure of the data. If it consists of flat files, the folder
+  # structure and file naming can be relevant. If it is a database, a description of the relevant
+  # tables, indices, triggers and views is important.
+  file_structure: |
+    Flat files.
+
+  # Which tools can be used to read the data. Especially important for non-standard formats.
+  required_tools: text editor, GIS-tools
+
+  # If the files were made using a specific tool, the tool name and version may be relevant
+  # for reading the data.
+  tool_versions: N/A
+
+  # Additional keys and values can be added here if this is a non-standard format that requires
+  # a more detailed explanation.
+
+# 5.3.1 Descriptive metadata
+# "Descriptive metadata shall include detailed information needed to understand each part of a
+# dataset. The purpose is to describe the dataset and build trust in it—by providing not only the
+# characteristics of each measure or component, but also information about how the data were
+# generated and collected."
+descriptive:
+  # The descriptions can vary by data type.
+  # For each data field in your dataset, please fill out all relevant parameters from section
+  # 5.3.1 of the DSF, and enter the attributes using the "Data description item" in lower-case
+  # as the key. The following list lists the most relevant attributes from the tables, see
+  # tables 3 to 9 in the DSF for full explanations.
+
+  # - description
+  # - data_precision
+  # - unit
+  # - sample_rate
+  # - filter
+  # - origin
+  # - bias
+  # - type
+  # - definition
+  # - range
+  # - error_codes
+  # - quality
+  # - offset
+  # - enumeration_specification
+  # - availability
+  # - srid (for coordinates)
+  # - time_zone (for time stamps)
+  # - time_format (for time stamps)
+
+  # Please note the following additions to the DSF:
+  # - When dealing with coordinates, the SRID must be specified with the srid key.
+  # - When dealing with times, the time zone must be specified with the timezone key.
+  # - When dealing with dates or times, the format must be specified with the format key.
+
+  fields:
+    gnss:
+      description: |
+        The data collected by the GNSS units consists of:
+          • Position per seconds (latitude and longitude)
+          • Time and date information
+          • Altitude
+          • HDOP: Horizontal Dilution Of Precision is a measurement of the geometry of the satellites in
+          the sky as seen from the receiver. A large number means that the satellites are closely
+          located in the sky and the position estimates have a high error from a geometry perspective.
+          • Speed in m/s
+          • Heading in degrees
+          • JM Jamming: 0, 1, 2 • SF: Spoofing: 0, 1, 2 0 = None, 1 = maybe, 2 = yes 0 = None, 1 = maybe, 2 = yes
+          • EC0 E/C0 Energy over carrier.
+          • NumSat: Number of satellites observed
+          • Various errors:
+            o ErrRms Horizontal error in meters. Total RMS
+            o ErrMaj Error ellipse, major axis
+            o ErrMin Error ellipse, minor axis
+            o eDi Error ellipse, angle of major axis from north
+            o ErrLat Latitude error
+            o ErrLon Longitude error
+            o ErrAlt Altitude error
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: shp/kml
+      quality: High
+    cellular:
+      description: |
+        The data collected by the cell phones consist of:
+          • Time and date
+          • Position (latitude and longitude)
+          • Breaks in signal and coverage - defined as a lack of downlink data for more than 2 seconds
+          • Base stations and cells of connection
+          • Quality of cell phone signal in decibel-milliwatts (dBm)
+          • Network packet data
+            o Round trip time (RTT)
+            o Bytes up
+            o Bytes down
+            o Packet sucess rate up (100% = no loss)
+            o Packet succes rate down (100% = no loss)
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: txt
+      quality: High
