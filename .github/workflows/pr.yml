@@ -29,20 +29,20 @@ concurrency:
   cancel-in-progress: false
   
 jobs:
-  serialize:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Wait for lock
-        uses: softprops/turnstyle@v1
-        with:
-          job-to-wait-for: "enable-auto-merge"
-          step-to-wait-for: "Create success status check for auto-merge"
-          poll-interval-seconds: 20  # how often to check if the previous run is finished
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # serialize:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Wait for lock
+  #       uses: softprops/turnstyle@v1
+  #       with:
+  #         job-to-wait-for: "enable-auto-merge"
+  #         step-to-wait-for: "Create success status check for auto-merge"
+  #         poll-interval-seconds: 20  # how often to check if the previous run is finished
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   check-file-structure:
-    needs: serialize
+    # needs: serialize
     runs-on: ubuntu-latest
     outputs:
       pr_number: ${{ steps.get_pr_info.outputs.pr_number }}
