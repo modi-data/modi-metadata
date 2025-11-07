@@ -2,10 +2,8 @@ name: File checks
 run-name: ${{ github.actor }} is trying to add a new file
 
 on:
-  merge_group:
-
   pull_request:
-    types: [opened, edited]
+    types: [opened, synchronize, reopened, edited]
     
   # This allows the workflow to be triggered manually for testing
   workflow_dispatch:
