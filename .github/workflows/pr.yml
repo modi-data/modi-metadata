@@ -59,7 +59,7 @@ jobs:
             }
             
       - name: Sleep
-        run: sleep 8
+        run: sleep 10
   
   check-file-structure:
     needs: wait-and-run
