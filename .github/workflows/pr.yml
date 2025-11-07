@@ -29,20 +29,36 @@ concurrency:
   cancel-in-progress: false
   
 jobs:
-  # serialize:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Wait for lock
-  #       uses: softprops/turnstyle@v1
-  #       with:
-  #         job-to-wait-for: "enable-auto-merge"
-  #         step-to-wait-for: "Create success status check for auto-merge"
-  #         poll-interval-seconds: 20  # how often to check if the previous run is finished
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  wait-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for other runs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const workflow_id = context.workflow;
+            const run_id = context.runId;
+            
+            while (true) {
+              const runs = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: workflow_id,
+                status: 'in_progress'
+              });
+              
+              const olderRuns = runs.data.workflow_runs.filter(
+                run => run.id < run_id && run.status === 'in_progress'
+              );
+              
+              if (olderRuns.length === 0) break;
+              
+              console.log(`Waiting for ${olderRuns.length} older run(s)...`);
+              await new Promise(resolve => setTimeout(resolve, 30000)); // wait 30 seconds
+            }
           
   check-file-structure:
-    # needs: serialize
+    needs: wait-and-run
     runs-on: ubuntu-latest
     outputs:
       pr_number: ${{ steps.get_pr_info.outputs.pr_number }}
