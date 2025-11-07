@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is trying to add a new file
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
+    types: [opened, edited]
     
   # This allows the workflow to be triggered manually for testing
   workflow_dispatch:
