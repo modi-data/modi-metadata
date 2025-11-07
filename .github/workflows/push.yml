@@ -15,23 +15,28 @@ jobs:
       - name: Wait for any running File checks workflows
         uses: actions/github-script@v7
         with:
-          script: |
-            const fileChecksWorkflow = 'pr.yml';
-            
+          script: |            
             while (true) {
-              const runs = await github.rest.actions.listWorkflowRuns({
+              const pr_runs = await github.rest.actions.listWorkflowRuns({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                workflow_id: fileChecksWorkflow,
+                workflow_id: 'pr.yml',
+                status: 'in_progress'
+              });
+
+              const merge_runs = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'merge.yml',
                 status: 'in_progress'
               });
               
-              if (runs.data.workflow_runs.length === 0) {
+              if (pr_runs.data.workflow_runs.length === 0 && merge_runs.data.workflow_runs.length === 0) {
                 console.log('No File checks workflows running, proceeding...');
                 break;
               }
               
-              console.log(`Waiting for ${runs.data.workflow_runs.length} File checks workflow(s)...`);
+              console.log(`Waiting for ${pr_runs.data.workflow_runs.length + merge_runs.data.workflow_runs.length} Workflow(s)...`);
               await new Promise(resolve => setTimeout(resolve, 30000));
             }
 
