@@ -56,7 +56,10 @@ jobs:
               console.log(`Waiting for ${olderRuns.length} older run(s)...`);
               await new Promise(resolve => setTimeout(resolve, 30000)); // wait 30 seconds
             }
-          
+            
+      - name: Sleep
+        run: sleep 8
+  
   check-file-structure:
     needs: wait-and-run
     runs-on: ubuntu-latest
