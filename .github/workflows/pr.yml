@@ -24,9 +24,9 @@ permissions:
   checks: write         # Added this to create check runs
   statuses: write       # Added this to create commit statuses
   
-concurrency:
-  group: yaml-processing-pipeline
-  cancel-in-progress: false
+# concurrency:
+#   group: yaml-processing-pipeline
+#   cancel-in-progress: false
   
 jobs:
   wait-and-run:
