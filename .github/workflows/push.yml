@@ -2,7 +2,7 @@ name: Deploy database
 run-name: ${{ github.actor }} is deploying the database
 on:
   workflow_run:
-    workflows: ["File checks"]
+    workflows: ["Wait for merge"]
     types:
       - completed
 concurrency:
