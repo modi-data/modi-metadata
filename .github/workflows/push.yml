@@ -23,20 +23,13 @@ jobs:
                 workflow_id: 'pr.yml',
                 status: 'in_progress'
               });
-
-              const merge_runs = await github.rest.actions.listWorkflowRuns({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                workflow_id: 'merge.yml',
-                status: 'in_progress'
-              });
               
-              if (pr_runs.data.workflow_runs.length === 0 && merge_runs.data.workflow_runs.length === 0) {
+              if (pr_runs.data.workflow_runs.length === 0) {
                 console.log('No File checks workflows running, proceeding...');
                 break;
               }
               
-              console.log(`Waiting for ${pr_runs.data.workflow_runs.length + merge_runs.data.workflow_runs.length} Workflow(s)...`);
+              console.log(`Waiting for ${pr_runs.data.workflow_runs.length} Workflow(s)...`);
               await new Promise(resolve => setTimeout(resolve, 30000));
             }
 
