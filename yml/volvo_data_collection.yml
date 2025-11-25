@@ -1,0 +1,332 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+# The summary should contain a thorough description of the study design and execution.
+# The description must be complete and self-contained, but can contain links
+# to images and further information (but keep in mind that the description
+# must make sense even if those links should stop working.)
+# Multiline strings can be written by starting the value with a pipe symbol (|).
+summary:
+  why_was_it_collected: |
+    To provide input to MODI deliverable D5.5: “Assessment of CCAM Implementation along the MODI Corridor”
+
+  how_was_the_collection_executed: |
+    Volvo drove from Hamburg to Oslo with a battery-electric truck on two occasions 
+    (Gothenborg-Oslo in January 2025 and Hamburg-Gothenborg in May 2025) and collected the same data from both trips. 
+    This document contains a summary of the data collected, the route driven, and analyses performed on the energy consumption data, 
+    lane detection data, object detection data, acceleration/braking data and positioning data.
+
+  objectives: |
+    To provide input to MODI deliverable D5.5: “Assessment of CCAM Implementation along the MODI Corridor”
+
+  research_questions: |
+    N/A
+
+  experimental_plan: |
+    N/A
+
+  sample_selection_criteria: N/A
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: wen.xu@volvo.com
+
+  # A web address to download the data if applicable.
+  web_address: N/A
+
+  # Which entity produced this dataset
+  producer_of_data: Volvo
+
+  # Data set DOI if applicable
+  DOI: N/A
+
+  # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
+  # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
+  data_area: Europe
+
+  # Which type of data this is.
+  # Must be one or more of:
+  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure,
+  #     speed/acceleration, video, pictures, gnss, lidar, radar, weather, vehicle probe data, events, other.
+  # You may add multiple data types if relevant, separated by a comma.
+  data_type: video, gnss, lane markings, speed/acceleration, vehicle probe data
+
+  # Which of the use cases in MODI this dataset is related to.
+  # Must be one of: UCNL, UCGE, UCSE, UCNO, UCCCAM, Other tasks
+  modi_use_case: UCCCAM
+
+  # An approximate description of the size of this dataset
+  dataset_size: |
+    Approximately 2,5 GB of data from the trips.
+    Approximately 100 GB of video data from the trips.
+
+  # A tiny sample of the dataset to show how it looks (if possible).
+  dataset_example: |
+    Time,Velocity[Km_per_h],VehicleWeight[kg],AccPedalPos[Percent],BrakePedalPos[Percent],WheelAngle[rad],Longitude[deg],Latitude[deg],Altitude[m],Bearing[deg],StateOfCharge[Percent],Current[A],Voltage[V],RoadEdgeLeft_YDist[m],LeftOfLeftRoadLinne_YDist[m],LeftRoadLine_YDist[m],RightRoadLine_YDist[m],RightofRightRoadLine_YDist[m],RoadEdgeRight_YDist[m]
+    2025-05-22T17:47:44.006694,,,,,-0.18943,,,,,,,,,,,,,
+    2025-05-22T17:47:44.008563,,,0.0,0.0,,,,,,,,,,,,,,
+    2025-05-22T17:47:44.009659,,,,,,,,,,,,,0.0,,,,,
+    2025-05-22T17:47:44.009895,,,,,,,,,,,,,,,,,,0.0
+
+# 5.3.3 Administrative metadata
+# "Administrative metadata are collected for the effective operation and management of data
+# storage and catalogues. This administrative information, covering various topics, is stored
+# along with the datasets. From a FOT data re-use perspective, the key role of administrative
+# metadata is to cover access conditions, rights, ownership and constraints."
+administrative:
+  # The version number of this dataset, used to keep track of different
+  # versions if it is uploaded multiple times.
+  # The version number can be numeric, date-based, or anything else, but
+  # it must be easy to see which version is newer without further knowledge.
+  version_number: 1
+
+  # The date this dataset was uploaded. Must be in ISO 8601 format (YYYY-MM-DD).
+  archiving_date: 2025-11-10
+
+  # A unique identifier for this dataset. This will be used to identify this and
+  # future updates in the metadata database, and must never be changed after the
+  # dataset has been uploaded for the first time.
+  unique_dataset_id: modi_uc_ccam_volvo
+
+  # Who has rights to use this dataset?
+  rights: On request
+
+  # Does the dataset have a specific license for usage?
+  license: None
+
+  # Who can access the dataset?
+  access: On request
+
+  # Any constraints in usage of the dataset?
+  constraints: N/A
+
+  # Can the dataset be used for free, or does usage incur any costs/billing for the user?
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+
+  # When the data set will stop existing (for example due to privacy regulations).
+  # Must be in ISO 8601 format (YYYY-MM-DD).
+  data_end_of_life: 2026-03-31
+
+  # A more detailed description of the various processes of the data collection,
+  # for example the methods/tools used to collect the data, filtering, post-processing,
+  # storage file structure, etc.
+  # This should include information about relevant conditions during the data collection
+  # (for example weather, climate, time of day, etc).
+  # Each key under "processes" can be custom made, and there can be as many as is
+  # necessary. The proposed keys are just examples.
+  processes:
+    collection: |
+      Volvo collected data for the MODI route between Oslo, Norway and Hamburg, Germany, on two different occasions (Oslo-Gothenborg in January 2025, Hamburg-Gothenborg in May 2025).
+      The data collection was performed using a battery-electric Volvo truck equipped with various sensors and data logging equipment to capture relevant data for the MODI project.
+      Video data was collected with a dashcam mounted in the front window.
+    filtering: |
+      This data set is the raw data, and has no filters.
+    aggregation: |
+      This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+# "Structural metadata are used to describe how the data are structured in relation to other
+# data. Data are organized into a system (e.g., a database and/or file system), a structure or
+# database schema and a data content format. The aim of structural metadata is to facilitate
+# the initial phase of data re-use by providing the necessary documentation about how the data
+# is organized. The description should include the file system, the file structure and how to
+# interpret the contents of a data container. All components of the dataset need to be
+# described."
+structural:
+  summary: |
+    Each CSV file contains timestamped rows with the following data categories:
+    - Position & Navigation: Time (ISO 8601 UTC+1), Longitude/Latitude coordinates (WGS84), Altitude, Bearing
+    - Vehicle Dynamics: Vehicle speed, weight, accelerator/brake pedal positions, steering wheel angle
+    - Electric Vehicle Data: State of Charge (battery percentage), battery current and voltage
+    - Lane & Road Detection: Lateral distances to left/right road lines, road edges, and outer road lines (vehicle coordinate system)
+    - Object Detection (Objects 00-21): Detected objects with longitudinal/lateral distances, classification (car, truck, pedestrian, bicycle, etc.), and unique IDs
+
+    Data is stored in a sparse manner with GNSS coordinates approximately every 250ms.
+    All measurements use the vehicle coordinate system where +X is forward, +Y is left of the truck, and origin (0,0) is at the middle of the front bumper.
+
+  # File format. Please include attributes such as delimiter for CSV, decimal separator,
+  # thousand separator (if any), and any other properties that is relevant for parsing the data.
+  file_format: |
+    .csv files with comma delimiter, period as decimal separator, no thousand separator
+    .mp4 files for video data
+
+  # Please describe the storage structure of the data. If it consists of flat files, the folder
+  # structure and file naming can be relevant. If it is a database, a description of the relevant
+  # tables, indices, triggers and views is important.
+  file_structure: |
+    Flat files containing timestamped rows. CSV files store sparse data where not all columns have values at every timestamp.
+    The datasets store data in a sparse matter, with GNSS coordinates approximately every 250ms.
+
+  # Which tools can be used to read the data. Especially important for non-standard formats.
+  required_tools: |
+    CSV/text editor for tabular data, GIS tools for spatial data (.kml), video players for .mp4, network analysis tools for .pcap
+
+  # If the files were made using a specific tool, the tool name and version may be relevant
+  # for reading the data.
+  tool_versions: N/A
+
+  # Additional keys and values can be added here if this is a non-standard format that requires
+  # a more detailed explanation.
+
+# 5.3.1 Descriptive metadata
+# "Descriptive metadata shall include detailed information needed to understand each part of a
+# dataset. The purpose is to describe the dataset and build trust in it—by providing not only the
+# characteristics of each measure or component, but also information about how the data were
+# generated and collected."
+descriptive:
+  # The descriptions can vary by data type.
+  # For each data field in your dataset, please fill out all relevant parameters from section
+  # 5.3.1 of the DSF, and enter the attributes using the "Data description item" in lower-case
+  # as the key. The following list lists the most relevant attributes from the tables, see
+  # tables 3 to 9 in the DSF for full explanations.
+
+  # - description
+  # - data_precision
+  # - unit
+  # - sample_rate
+  # - filter
+  # - origin
+  # - bias
+  # - type
+  # - definition
+  # - range
+  # - error_codes
+  # - quality
+  # - offset
+  # - enumeration_specification
+  # - availability
+  # - srid (for coordinates)
+  # - time_zone (for time stamps)
+  # - time_format (for time stamps)
+
+  # Please note the following additions to the DSF:
+  # - When dealing with coordinates, the SRID must be specified with the srid key.
+  # - When dealing with times, the time zone must be specified with the timezone key.
+  # - When dealing with dates or times, the format must be specified with the format key.
+
+  fields:
+    Time:
+      description: ISO 8601 timestamp in UTC+1 time zone
+      time_zone: UTC+1
+      time_format: ISO 8601
+
+    Longitude[deg]:
+      description: Longitude coordinate (WGS84). Value 219.496729 indicates "No value"
+      unit: degrees
+      srid: 4326
+      error_codes: Value 219.496729 indicates "No value"
+
+    Latitude[deg]:
+      description: Latitude coordinate (WGS84). Value 219.496729 indicates "No value"
+      unit: degrees
+      srid: 4326
+      error_codes: Value 219.496729 indicates "No value"
+
+    Altitude[m]:
+      description: Altitude above sea level
+      unit: meters
+
+    Bearing[deg]:
+      description: Direction of travel in degrees. Value 511.992188 indicates "No value"
+      unit: degrees
+      range: 0-360
+      error_codes: Value 511.992188 indicates "No value"
+
+    Velocity[Km_per_h]:
+      description: Vehicle speed
+      unit: km/h
+
+    VehicleWeight[kg]:
+      description: Vehicle weight
+      unit: kilograms
+
+    AccPedalPos[Percent]:
+      description: Accelerator pedal position
+      unit: percent
+      range: 0-100
+
+    BrakePedalPos[Percent]:
+      description: Brake pedal position
+      unit: percent
+      range: 0-100
+
+    WheelAngle[rad]:
+      description: Steering wheel angle in radians
+      unit: radians
+
+    StateOfCharge[Percent]:
+      description: State of Charge (battery percentage)
+      unit: percent
+      range: 0-100
+
+    Current[A]:
+      description: Battery current in amperes
+      unit: amperes
+
+    Voltage[V]:
+      description: Battery voltage
+      unit: volts
+
+    LeftOfLeftRoadLine_YDist[m]:
+      description: Lateral distance (Y-axis) to outer left road line (for multi-lane roads)
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+      error_codes: Value "10.475" (Sweden to Norway dataset) and Value "0" or "-0.01" (Germany to Sweden dataset) indicates "No value"
+
+    LeftRoadLine_YDist[m]:
+      description: Lateral distance (Y-axis) to left road line
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+      error_codes: Value "10.475" (Sweden to Norway dataset) and Value "0" or "-0.01" (Germany to Sweden dataset) indicates "No value"
+
+    RightRoadLine_YDist[m]:
+      description: Lateral distance (Y-axis) to right road line
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+      error_codes: Value "10.475" (Sweden to Norway dataset) and Value "0" or "-0.01" (Germany to Sweden dataset) indicates "No value"
+
+    RightOfRightRoadLine_YDist[m]:
+      description: Lateral distance (Y-axis) to outer right road line (for multi-lane roads)
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+      error_codes: Value "10.475" (Sweden to Norway dataset) and Value "0" or "-0.01" (Germany to Sweden dataset) indicates "No value"
+
+    RoadEdgeLeft_YDist[m]:
+      description: Lateral distance (Y-axis) to left road edge
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+      error_codes: Value "10.475" (Sweden to Norway dataset) and Value "0" or "-0.01" (Germany to Sweden dataset) indicates "No value"
+
+    RoadEdgeRight_YDist[m]:
+      description: Lateral distance (Y-axis) to right road edge
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+      error_codes: Value "10.475" (Sweden to Norway dataset) and Value "0" or "-0.01" (Germany to Sweden dataset) indicates "No value"
+
+    Object##_X[m]:
+      description: Longitudinal distance (forward/backward from front bumper)
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, origin (0,0) is at the middle of the front bumper
+
+    Object##_Y[m]:
+      description: Lateral distance (left is positive, right is negative)
+      unit: meters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+
+    Object##_Class:
+      description: Object classification
+      enumeration_specification: |
+        0: Car
+        1: Truck
+        3: Heavy Vehicle
+        4: 2 Wheeler
+        5: Pedestrian
+        7: Unidentified Vehicle
+        8: Unidentified VRU (Vulnerable Road User)
+        10: Bicycle
+        11: Motorcycle
+
+    Object##_ID:
+      description: Unique ID assigned when object is detected. If object is lost and re-detected, it receives a new ID
+      definition: Dynamic based on maximum number of objects found at same time. Total number of columns differs between files

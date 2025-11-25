@@ -1,0 +1,290 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+# The summary should contain a thorough description of the study design and execution.
+# The description must be complete and self-contained, but can contain links
+# to images and further information (but keep in mind that the description
+# must make sense even if those links should stop working.)
+# Multiline strings can be written by starting the value with a pipe symbol (|).
+summary:
+  why_was_it_collected: |
+    To demonstrate Cooperative Detection and Perception of VRU and Vehicles as part of MODI UC NO demonstrations.
+    Data collected to showcase C-ITS enabled perception sharing between vehicles at busy intersections.
+    Demonstrates how vehicles can share perception data to enable safe overtaking maneuvers in complex traffic situations.
+
+  how_was_the_collection_executed: |
+    Volvo collected data during VRU demonstration scenarios with a battery-electric truck equipped with object detection sensors at Port of Moss entrance.
+    Data was capturing vehicle position and detected objects around the vehicle.
+    Scenario: vehicle perceiving oncoming vehicles and pedestrians crossing street, communicating via C-ITS to another vehicle.
+
+  objectives: |
+    To demonstrate Cooperative Detection and Perception of VRU and Vehicles using C-ITS at busy intersections.
+    To showcase perception sharing where one vehicle communicates detected objects to another vehicle via V2X.
+    To implement latest CCAM technology and overcome major deployment barriers for logistics (input to MODI Objective 1).
+    To perform technical and socio-economic impact assessments for MODI L4 CCAM solutions (input to MODI Objective 4).
+
+  research_questions: N/A
+
+  experimental_plan: |
+    Cooperative Detection and Perception demonstration at entrance to Port of Moss.
+    Scenario: broken down vehicle at busy intersection, requiring overtaking maneuver.
+    Uses CAM (Cooperative Awareness Message) and CPM (Collective Perception Message) for V2X communication.
+    One vehicle perceives oncoming vehicles and pedestrians, communicates detections via CPM to overtaking vehicle.
+    CAM messages provide vehicle awareness data; CPM messages share detected object information.
+    Intersection includes traffic from ferry, parking lot access, ASKO terminal, and port area entrance.
+    Only C-ITS functionality demonstrated, no automatic speed adjustment or steering.
+    Pre-test conducted in week 3 of 2025, main demonstration on June 19, 2025.
+    Demonstrations conducted during off-peak hours with safety drivers and project participants as VRUs/traffic.
+
+  sample_selection_criteria: N/A
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: wen.xu@volvo.com
+
+  # A web address to download the data if applicable.
+  web_address: N/A
+
+  # Which entity produced this dataset
+  producer_of_data: Volvo
+
+  # Data set DOI if applicable
+  DOI: N/A
+
+  # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
+  # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
+  data_area: Norway, Oslo area
+
+  # Which type of data this is.
+  # Must be one or more of:
+  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure,
+  #     speed/acceleration, video, pictures, gnss, lidar, radar, weather, vehicle probe data, events, other.
+  # You may add multiple data types if relevant, separated by a comma.
+  data_type: gnss, vehicle probe data, radar, other
+
+  # Which of the use cases in MODI this dataset is related to.
+  # Must be one of: UCNL, UCGE, UCSE, UCNO, UCCCAM, Other tasks
+  modi_use_case: UCNO
+
+  # An approximate description of the size of this dataset
+  dataset_size: |
+    3 CSV files totaling approximately 13 MB containing 34,323 rows of timestamped object detection data.
+    Individual files range from 2.6 MB to 7.7 MB (6,882 to 20,433 rows per file).
+
+  # A tiny sample of the dataset to show how it looks (if possible).
+  dataset_example: |
+    Timestamp,Latitude,Longitude,Heading,numObjects,obj00Y,obj00X,obj00ID,obj00Class,obj01Y,obj01X,obj01ID,obj01Class,...
+    1750316336109120,59.431258,10.6555063,303,,13,3000,700,4,11,4900,-1200,8,5,4500,-1200,12,...
+    1750316336310593,59.431258,10.6555063,303,,13,3000,700,4,11,4900,-1200,8,5,4500,-1200,12,...
+
+# 5.3.3 Administrative metadata
+# "Administrative metadata are collected for the effective operation and management of data
+# storage and catalogues. This administrative information, covering various topics, is stored
+# along with the datasets. From a FOT data re-use perspective, the key role of administrative
+# metadata is to cover access conditions, rights, ownership and constraints."
+administrative:
+  # The version number of this dataset, used to keep track of different
+  # versions if it is uploaded multiple times.
+  # The version number can be numeric, date-based, or anything else, but
+  # it must be easy to see which version is newer without further knowledge.
+  version_number: 1
+
+  # The date this dataset was uploaded. Must be in ISO 8601 format (YYYY-MM-DD).
+  archiving_date: 2025-11-24
+
+  # A unique identifier for this dataset. This will be used to identify this and
+  # future updates in the metadata database, and must never be changed after the
+  # dataset has been uploaded for the first time.
+  unique_dataset_id: modi_uc_no_volvo_vru_demo
+
+  # Who has rights to use this dataset?
+  rights: On request
+
+  # Does the dataset have a specific license for usage?
+  license: N/A
+
+  # Who can access the dataset?
+  access: On request
+
+  # Any constraints in usage of the dataset?
+  constraints: N/A
+
+  # Can the dataset be used for free, or does usage incur any costs/billing for the user?
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+
+  # When the data set will stop existing (for example due to privacy regulations).
+  # Must be in ISO 8601 format (YYYY-MM-DD).
+  data_end_of_life: 2026-03-31
+
+  # A more detailed description of the various processes of the data collection,
+  # for example the methods/tools used to collect the data, filtering, post-processing,
+  # storage file structure, etc.
+  # This should include information about relevant conditions during the data collection
+  # (for example weather, climate, time of day, etc).
+  # Each key under "processes" can be custom made, and there can be as many as is
+  # necessary. The proposed keys are just examples.
+  processes:
+    collection: |
+      Volvo collected data during VRU demonstration scenarios with a battery-electric truck equipped with object detection sensors.
+      Data was logged at high frequency capturing GNSS position and detected objects around the vehicle.
+      Object detection includes position (X/Y coordinates), unique IDs, and classification of detected objects.
+      Data collection occurred in June 2025 in the Oslo, Norway area across 3 separate demonstration runs.
+    filtering: |
+      This data set is the raw data, and has no filters.
+    aggregation: |
+      This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+# "Structural metadata are used to describe how the data are structured in relation to other
+# data. Data are organized into a system (e.g., a database and/or file system), a structure or
+# database schema and a data content format. The aim of structural metadata is to facilitate
+# the initial phase of data re-use by providing the necessary documentation about how the data
+# is organized. The description should include the file system, the file structure and how to
+# interpret the contents of a data container. All components of the dataset need to be
+# described."
+structural:
+  summary: |
+    The dataset consists of 3 CSV files (vru_demo1.csv, vru_demo2.csv, vru_demo3.csv), each representing a separate VRU demonstration scenario.
+    Each CSV file contains timestamped rows with the following data categories:
+    - Position & Navigation: Unix timestamp , Longitude/Latitude coordinates (WGS84), Heading
+    - Object Detection: Number of detected objects (numObjects), and for each object (obj00-obj23):
+      * Y coordinate (lateral distance, positive = left of vehicle)
+      * X coordinate (longitudinal distance, positive = forward)
+      * Object ID (unique identifier assigned when detected)
+      * Object Class (classification: Car, Truck, Pedestrian, Bicycle, Motorcycle, etc.)
+
+    Data is recorded at approximately 200ms intervals (5 Hz).
+    The vehicle coordinate system has origin (0,0) at the middle of the front bumper, +X forward, +Y left.
+    Up to 24 objects can be tracked simultaneously (obj00 through obj23).
+    Empty fields indicate no object detected in that slot.
+
+  # File format. Please include attributes such as delimiter for CSV, decimal separator,
+  # thousand separator (if any), and any other properties that is relevant for parsing the data.
+  file_format: |
+    .csv files with comma delimiter, period as decimal separator, no thousand separator
+
+  # Please describe the storage structure of the data. If it consists of flat files, the folder
+  # structure and file naming can be relevant. If it is a database, a description of the relevant
+  # tables, indices, triggers and views is important.
+  file_structure: |
+    3 flat CSV files named vru_demo1.csv, vru_demo2.csv, and vru_demo3.csv, each containing timestamped rows.
+    Each row has variable number of populated object fields depending on how many objects were detected.
+    The CSV has a fixed header with fields for 24 objects (obj00-obj23), each with 4 attributes (Y, X, ID, Class).
+
+  # Which tools can be used to read the data. Especially important for non-standard formats.
+  required_tools: |
+    Standard CSV readers (Excel, LibreOffice, pandas, etc.), text editors for viewing raw data
+
+  # If the files were made using a specific tool, the tool name and version may be relevant
+  # for reading the data.
+  tool_versions: N/A
+
+  # Additional keys and values can be added here if this is a non-standard format that requires
+  # a more detailed explanation.
+
+# 5.3.1 Descriptive metadata
+# "Descriptive metadata shall include detailed information needed to understand each part of a
+# dataset. The purpose is to describe the dataset and build trust in it—by providing not only the
+# characteristics of each measure or component, but also information about how the data were
+# generated and collected."
+descriptive:
+  # The descriptions can vary by data type.
+  # For each data field in your dataset, please fill out all relevant parameters from section
+  # 5.3.1 of the DSF, and enter the attributes using the "Data description item" in lower-case
+  # as the key. The following list lists the most relevant attributes from the tables, see
+  # tables 3 to 9 in the DSF for full explanations.
+
+  # - description
+  # - data_precision
+  # - unit
+  # - sample_rate
+  # - filter
+  # - origin
+  # - bias
+  # - type
+  # - definition
+  # - range
+  # - error_codes
+  # - quality
+  # - offset
+  # - enumeration_specification
+  # - availability
+  # - srid (for coordinates)
+  # - time_zone (for time stamps)
+  # - time_format (for time stamps)
+
+  # Please note the following additions to the DSF:
+  # - When dealing with coordinates, the SRID must be specified with the srid key.
+  # - When dealing with times, the time zone must be specified with the timezone key.
+  # - When dealing with dates or times, the format must be specified with the format key.
+
+  fields:
+    Timestamp:
+      description: Unix timestamp in microseconds since epoch
+      time_format: Unix timestamp (microseconds)
+      data_precision: Microseconds
+      sample_rate: Approximately 5 Hz (200ms intervals)
+
+    Latitude:
+      description: Latitude coordinate (WGS84)
+      unit: degrees
+      srid: 4326
+      data_precision: 6 decimal places
+
+    Longitude:
+      description: Longitude coordinate (WGS84)
+      unit: degrees
+      srid: 4326
+      data_precision: 7 decimal places
+
+    Heading:
+      description: Vehicle heading/bearing in degrees
+      unit: degrees
+      range: 0-360
+      availability: May be empty for some rows
+
+    numObjects:
+      description: Number of objects detected in this frame
+      unit: count
+      range: 0-24
+      availability: May be empty for some rows
+
+    obj##Y:
+      description: Lateral distance (Y-axis) to detected object. Positive values indicate object is to the left of the vehicle
+      unit: millimeters
+      origin: Vehicle coordinate system where +X is forward, +Y is left of the truck, origin (0,0) is at the middle of the front bumper
+      availability: Empty if no object in this slot
+      error_codes: Value "0" may indicate no valid detection
+
+    obj##X:
+      description: Longitudinal distance (X-axis) to detected object. Positive values indicate object is in front of the vehicle
+      unit: millimeters
+      origin: Vehicle coordinate system where +X is forward, origin (0,0) is at the middle of the front bumper
+      availability: Empty if no object in this slot
+      error_codes: Value "0" may indicate no valid detection
+
+    obj##ID:
+      description: Unique identifier assigned when object is first detected. If object is lost and re-detected, it receives a new ID
+      definition: Integer ID assigned by detection system
+      availability: Empty if no object in this slot
+      error_codes: Negative values (e.g., -700, -1200) appear in some records and may indicate special states
+
+    obj##Class:
+      description: Classification of detected object
+      enumeration_specification: |
+        0: Car
+        1: Truck
+        2: Unknown
+        3: Heavy Vehicle
+        4: 2 Wheeler
+        5: Pedestrian
+        6: Unknown
+        7: Unidentified Vehicle
+        8: Unidentified VRU (Vulnerable Road User)
+        9: Unknown
+        10: Bicycle
+        11: Motorcycle
+        12: Unknown
+        13: Unknown
+      availability: Empty if no object in this slot
