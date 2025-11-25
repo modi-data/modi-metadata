@@ -1,0 +1,280 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+# The summary should contain a thorough description of the study design and execution.
+# The description must be complete and self-contained, but can contain links
+# to images and further information (but keep in mind that the description
+# must make sense even if those links should stop working.)
+# Multiline strings can be written by starting the value with a pipe symbol (|).
+summary:
+  why_was_it_collected: |
+    To demonstrate Awareness Driving via V2X at intersections as part of MODI UC NO demonstrations.
+    Data collected to showcase C-ITS functionality for informing vehicles about presence of other vehicles not in line of sight.
+  how_was_the_collection_executed: |
+    Volvo collected data during T-crossing/intersection driving scenarios with a battery-electric truck near Oslo, Norway. 
+    Data was collected at high frequency including vehicle dynamics, positioning, and control inputs.
+    Demonstrations conducted outside ASKO central storage when entering the road "Osloveien".
+
+  objectives: |
+    To demonstrate Awareness Driving via V2X at intersections with vehicles entering main roads without line of sight.
+    To showcase C-ITS functionality where equipped vehicles inform other vehicles about their presence.
+    To implement latest CCAM technology and overcome major deployment barriers for logistics (input to MODI Objective 1).
+    To define recommendations for supporting infrastructure and vehicle regulations (input to MODI Objective 2).
+
+  research_questions: N/A
+
+  experimental_plan: |
+    Awareness Driving demonstration outside ASKO central storage at entrance to "Osloveien".
+    Scenario: vehicle entering main road without line of sight to oncoming vehicle due to obstruction or road curvature.
+    Uses CAM (Cooperative Awareness Message) for V2X communication between vehicles.
+    C-ITS equipped vehicles broadcast CAM messages to inform entering vehicle about presence of oncoming traffic.
+    Only C-ITS functionality demonstrated, no automatic speed adjustment or steering.
+    Pre-test conducted in week 3 of 2025, main demonstration on June 19, 2025.
+    Safety drivers present during all demonstrations.
+
+  sample_selection_criteria: N/A
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: wen.xu@volvo.com
+
+  # A web address to download the data if applicable.
+  web_address: N/A
+
+  # Which entity produced this dataset
+  producer_of_data: Volvo
+
+  # Data set DOI if applicable
+  DOI: N/A
+
+  # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
+  # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
+  data_area: Norway, Oslo area
+
+  # Which type of data this is.
+  # Must be one or more of:
+  #     survey, interviews, mobile network, itsg5, lane markings, signage, physical road infrastructure,
+  #     speed/acceleration, video, pictures, gnss, lidar, radar, weather, vehicle probe data, events, other.
+  # You may add multiple data types if relevant, separated by a comma.
+  data_type: gnss, speed/acceleration, vehicle probe data
+
+  # Which of the use cases in MODI this dataset is related to.
+  # Must be one of: UCNL, UCGE, UCSE, UCNO, UCCCAM, Other tasks
+  modi_use_case: UCNO
+
+  # An approximate description of the size of this dataset
+  dataset_size: |
+    6 CSV files totaling approximately 19 MB containing 141,031 rows of timestamped vehicle data.
+    Individual files range from 1.6 MB to 4.0 MB (12,262 to 30,172 rows per file).
+
+  # A tiny sample of the dataset to show how it looks (if possible).
+  dataset_example: |
+    Timestamp,Latitude,Longitude,Heading,Altitude,GNSSSpeed,VehicleSpeed,YawRate,SteeringWheelAngle,Odometer,ThrottlePedalPos,BrakePedalPos,LongitudinalAcc,LateralAcc
+    1750190313280123,59.4860894,10.7073408,,,,74.3984375,-0.005874,0.0136953125,22074980,40,0,0.2358515625,0.1953242188
+    1750190313280124,59.4860894,10.7073408,202.6015625,40.125,72.59765625,74.3984375,-0.005874,0.0136953125,22074980,40,0,0.2358515625,0.1953242188
+    1750190313280128,59.4860894,10.7073408,202.6015625,40.125,72.59765625,74.3984375,-0.005874,0.0136953125,22074980,40,0,0.2358515625,0.1953242188
+
+# 5.3.3 Administrative metadata
+# "Administrative metadata are collected for the effective operation and management of data
+# storage and catalogues. This administrative information, covering various topics, is stored
+# along with the datasets. From a FOT data re-use perspective, the key role of administrative
+# metadata is to cover access conditions, rights, ownership and constraints."
+administrative:
+  # The version number of this dataset, used to keep track of different
+  # versions if it is uploaded multiple times.
+  # The version number can be numeric, date-based, or anything else, but
+  # it must be easy to see which version is newer without further knowledge.
+  version_number: 1
+
+  # The date this dataset was uploaded. Must be in ISO 8601 format (YYYY-MM-DD).
+  archiving_date: 2025-11-10
+
+  # A unique identifier for this dataset. This will be used to identify this and
+  # future updates in the metadata database, and must never be changed after the
+  # dataset has been uploaded for the first time.
+  unique_dataset_id: modi_uc_no_volvo_tcross
+
+  # Who has rights to use this dataset?
+  rights: On request
+
+  # Does the dataset have a specific license for usage?
+  license: N/A
+
+  # Who can access the dataset?
+  access: On request
+
+  # Any constraints in usage of the dataset?
+  constraints: N/A
+
+  # Can the dataset be used for free, or does usage incur any costs/billing for the user?
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+
+  # When the data set will stop existing (for example due to privacy regulations).
+  # Must be in ISO 8601 format (YYYY-MM-DD).
+  data_end_of_life: 2026-03-31
+
+  # A more detailed description of the various processes of the data collection,
+  # for example the methods/tools used to collect the data, filtering, post-processing,
+  # storage file structure, etc.
+  # This should include information about relevant conditions during the data collection
+  # (for example weather, climate, time of day, etc).
+  # Each key under "processes" can be custom made, and there can be as many as is
+  # necessary. The proposed keys are just examples.
+  processes:
+    collection: |
+      Volvo collected data during T-crossing/intersection scenarios with a battery-electric truck equipped with various sensors. 
+      Data was logged at high frequency capturing vehicle dynamics, 
+      GNSS position, steering inputs, throttle/brake positions, and acceleration measurements. 
+      Data collection occurred in June 2025 in the Oslo, Norway area.
+    filtering: |
+      This data set is the raw data, and has no filters.
+    aggregation: |
+      This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+# "Structural metadata are used to describe how the data are structured in relation to other
+# data. Data are organized into a system (e.g., a database and/or file system), a structure or
+# database schema and a data content format. The aim of structural metadata is to facilitate
+# the initial phase of data re-use by providing the necessary documentation about how the data
+# is organized. The description should include the file system, the file structure and how to
+# interpret the contents of a data container. All components of the dataset need to be
+# described."
+structural:
+  summary: |
+    The dataset consists of 6 CSV files (tcross_1.csv through tcross_6.csv), each representing a separate T-crossing/intersection driving scenario.
+    Each CSV file contains timestamped rows with the following data categories:
+    - Position & Navigation: Unix timestamp, Longitude/Latitude coordinates (WGS84), Altitude, Heading
+    - Vehicle Dynamics: Vehicle speed from CAN bus, GNSS speed, yaw rate, steering wheel angle, odometer
+    - Driver Controls: Throttle pedal position, brake pedal position
+    - Vehicle Motion: Longitudinal acceleration (forward/backward), lateral acceleration (left/right)
+
+    Some fields may be empty for certain rows as different sensors update at different rates.
+
+  # File format. Please include attributes such as delimiter for CSV, decimal separator,
+  # thousand separator (if any), and any other properties that is relevant for parsing the data.
+  file_format: |
+    .csv files with comma delimiter, period as decimal separator, no thousand separator
+
+  # Please describe the storage structure of the data. If it consists of flat files, the folder
+  # structure and file naming can be relevant. If it is a database, a description of the relevant
+  # tables, indices, triggers and views is important.
+  file_structure: |
+    6 flat CSV files named tcross_1.csv through tcross_6.csv, each containing timestamped rows with 14 columns. 
+    Data is recorded at high frequency with timestamps in microseconds since epoch. 
+    Some fields may be empty for certain rows as sensors update at different rates.
+
+  # Which tools can be used to read the data. Especially important for non-standard formats.
+  required_tools: |
+    Standard CSV readers (Excel, LibreOffice, pandas, etc.), text editors for viewing raw data
+
+  # If the files were made using a specific tool, the tool name and version may be relevant
+  # for reading the data.
+  tool_versions: N/A
+
+  # Additional keys and values can be added here if this is a non-standard format that requires
+  # a more detailed explanation.
+
+# 5.3.1 Descriptive metadata
+# "Descriptive metadata shall include detailed information needed to understand each part of a
+# dataset. The purpose is to describe the dataset and build trust in it—by providing not only the
+# characteristics of each measure or component, but also information about how the data were
+# generated and collected."
+descriptive:
+  # The descriptions can vary by data type.
+  # For each data field in your dataset, please fill out all relevant parameters from section
+  # 5.3.1 of the DSF, and enter the attributes using the "Data description item" in lower-case
+  # as the key. The following list lists the most relevant attributes from the tables, see
+  # tables 3 to 9 in the DSF for full explanations.
+
+  # - description
+  # - data_precision
+  # - unit
+  # - sample_rate
+  # - filter
+  # - origin
+  # - bias
+  # - type
+  # - definition
+  # - range
+  # - error_codes
+  # - quality
+  # - offset
+  # - enumeration_specification
+  # - availability
+  # - srid (for coordinates)
+  # - time_zone (for time stamps)
+  # - time_format (for time stamps)
+
+  # Please note the following additions to the DSF:
+  # - When dealing with coordinates, the SRID must be specified with the srid key.
+  # - When dealing with times, the time zone must be specified with the timezone key.
+  # - When dealing with dates or times, the format must be specified with the format key.
+
+  fields:
+    Timestamp:
+      description: Unix timestamp in microseconds since epoch
+      time_format: Unix timestamp (microseconds)
+      data_precision: Microseconds
+
+    Latitude:
+      description: Latitude coordinate (WGS84)
+      unit: degrees
+      srid: 4326
+      data_precision: 7 decimal places
+
+    Longitude:
+      description: Longitude coordinate (WGS84)
+      unit: degrees
+      srid: 4326
+      data_precision: 7 decimal places
+
+    Heading:
+      description: Vehicle heading/bearing in degrees
+      unit: degrees
+      range: 0-360
+      availability: May be empty for some rows
+
+    Altitude:
+      description: Altitude above sea level
+      unit: meters
+      availability: May be empty for some rows
+
+    GNSSSpeed:
+      description: Speed measured by GNSS system
+      unit: km/h
+      availability: May be empty for some rows
+
+    VehicleSpeed:
+      description: Vehicle speed from CAN bus
+      unit: km/h
+
+    YawRate:
+      description: Rate of change of vehicle heading (rotation around vertical axis)
+      unit: radians per second
+
+    SteeringWheelAngle:
+      description: Steering wheel angle
+      unit: radians
+
+    Odometer:
+      description: Total distance traveled by vehicle
+      unit: meters
+
+    ThrottlePedalPos:
+      description: Throttle/accelerator pedal position
+      unit: percent
+      range: 0-100
+
+    BrakePedalPos:
+      description: Brake pedal position
+      unit: percent
+      range: 0-100
+
+    LongitudinalAcc:
+      description: Longitudinal acceleration (forward/backward)
+      unit: m/s²
+
+    LateralAcc:
+      description: Lateral acceleration (left/right)
+      unit: m/s²
