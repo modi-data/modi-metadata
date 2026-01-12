@@ -36,7 +36,7 @@ summary:
   producer_of_data: SINTEF
 
   # Data set DOI if applicable
-  DOI: N/A
+  DOI: 10.5281/zenodo.17696557
 
   # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
   # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
