@@ -78,13 +78,13 @@ administrative:
   unique_dataset_id: modi_cca_2_unified_project_arena_survey
 
   # Who has rights to use this dataset?
-  rights: Open, see Access for contact info
+  rights: Closed, see contact person
 
   # Does the dataset have a specific license for usage?
-  license: No - closed
+  license: N/A
 
   # Who can access the dataset?
-  access: Everyone, contact esten.heggem@sintef.no
+  access: Closed, see contact person
 
   # Any constraints in usage of the dataset?
   constraints: N/A
