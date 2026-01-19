@@ -43,7 +43,7 @@ summary:
   producer_of_data: SINTEF
 
   # Data set DOI if applicable
-  DOI: N/A
+  DOI: 10.5281/zenodo.18229297
 
   # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
   # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
@@ -92,13 +92,13 @@ administrative:
   unique_dataset_id: modi_uc_no_border_crossing_service_info_new_solution
 
   # Who has rights to use this dataset?
-  rights: Open, see Access for contact info
+  rights: Open
 
   # Does the dataset have a specific license for usage?
-  license: No
+  license: Creative Commons Attribution 4.0 International
 
   # Who can access the dataset?
-  access: Everyone, contact petter.arnesen@sintef.no
+  access: Everyone
 
   # Any constraints in usage of the dataset?
   constraints: N/A
