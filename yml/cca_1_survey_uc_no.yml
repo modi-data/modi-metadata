@@ -1,7 +1,7 @@
 # This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
 # The DSF can be consulted if anything is unclear; each section in the format is directly
 # or indirectly based on a section in the DSF document.
-# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
 
 # The summary should contain a thorough description of the study design and execution.
 # The description must be complete and self-contained, but can contain links
@@ -36,7 +36,7 @@ summary:
   producer_of_data: SINTEF
 
   # Data set DOI if applicable
-  DOI: 10.5281/zenodo.17696557
+  DOI: N/A
 
   # Which are the data are from. Can be an exact coordinate, a polygon, a town name, a country name, etc.
   # If providing coordinates/polygons, it must be encoded as WKT with an SRID of 4326.
@@ -79,13 +79,13 @@ administrative:
   unique_dataset_id: modi_uc_no_cca_1_survey
 
   # Who has rights to use this dataset?
-  rights: Open, see Access for contact info
+  rights: Closed, see contact person
 
   # Does the dataset have a specific license for usage?
-  license: No - closed
+  license: N/A
 
   # Who can access the dataset?
-  access: Everyone, contact andre.sande@sintef.no
+  access: Closed, see contact person
 
   # Any constraints in usage of the dataset?
   constraints: N/A
