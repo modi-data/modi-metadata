@@ -1,0 +1,179 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+summary:
+  why_was_it_collected: Monitor operational performance of autonomous electric transport (AET) at Swedish demo site.
+  how_was_the_collection_executed: Monthly operational data collected from December 2024 to September 2025
+  objectives: Part of demonstration activities in UC Sweden.
+
+  experimental_plan: N/A
+  research_questions: N/A
+  sample_selection_criteria: N/A
+
+  modi_use_case: UCSE
+  data_area: Swedish demo site, Sweden
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Pia Wijk, pia.wijk@einride.tech
+  producer_of_data: Einride
+  web_address: N/A
+  DOI: N/A
+
+  # Which type of data this is.
+  data_type: vehicle probe data, events, weather, gnss, other
+  dataset_size: Excel file containing 10 months of operational data with 10 key performance indicators.
+  dataset_example: N/A
+
+# 5.3.3 Administrative metadata
+administrative:
+  version_number: 1
+  archiving_date: 2025-11-24
+  unique_dataset_id: modi_uc_se_einride_se_demo_site_kpi
+
+  # Who has rights to use this dataset?
+  rights: Einride
+  license: "No"
+  access: MODI Partners, on request
+  constraints: agreed upon directly with Einride
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+  data_end_of_life: 2030-12-31
+
+  # A more detailed description of the various processes of the data collection,
+  processes:
+    collection: Monthly KPI data was collected from Einride's autonomous electric vehicle operations
+    filtering: No filtering applied.
+    aggregation: Raw operational data was aggregated into monthly summaries.
+
+# 5.3.2 Structural metadata
+structural:
+  summary: |
+    The dataset consists of monthly operational KPIs organized in a time-series format with
+    10 months of data (December 2024 - September 2025). Each row represents a different
+    operational metric, and each column represents a month. The metrics cover transport volume,
+    delivery performance, operational efficiency, and system availability.
+
+  # File format. Please include attributes such as delimiter for CSV, decimal separator,
+  # thousand separator (if any), and any other properties that is relevant for parsing the data.
+  file_format: |
+    .xlsx (Microsoft Excel) file with standard formatting.
+
+  # Please describe the storage structure of the data. If it consists of flat files, the folder
+  # structure and file naming can be relevant. If it is a database, a description of the relevant
+  # tables, indices, triggers and views is important.
+  file_structure: |
+    Single Excel file with tabular structure:
+    - First row: Header with month labels (Dec-24, Jan-25, etc.)
+    - First column: Metric names (objectives)
+    - Data cells: Monthly values for each metric
+    - 10 rows of metrics × 10 columns of months = 100 data points
+
+  # Which tools can be used to read the data. Especially important for non-standard formats.
+  required_tools: |
+    Microsoft Excel, LibreOffice Calc, Google Sheets, or any spreadsheet software capable of
+    reading .xlsx files. Python libraries such as pandas, openpyxl, or xlrd can also be used
+    for programmatic access.
+
+  # If the files were made using a specific tool, the tool name and version may be relevant
+  # for reading the data.
+  tool_versions: N/A
+
+# 5.3.1 Descriptive metadata
+descriptive:
+  fields:
+    Time_Period:
+      description: Monthly time periods from December 2024 to September 2025
+      time_format: MMM-YY (e.g., Dec-24, Jan-25)
+      time_zone: CET (Central European Time)
+      sample_rate: Monthly
+
+    AET_tonne_km_per_month:
+      description: Autonomous Electric Transport tonne-kilometers per month - primary measure of freight transport volume and efficiency
+      unit: tonne-km
+      type: calculated
+      definition: Total tonnes transported multiplied by distance traveled
+      data_precision: 1 decimal place
+      quality: High - calculated from measured vehicle data
+      availability: 100%
+
+    Tonnes_transported:
+      description: Total weight of goods transported per month
+      unit: tonnes
+      type: measured
+      data_precision: 2 decimal places
+      quality: High - measured from vehicle load sensors and logistics systems
+      availability: 100%
+
+    Delivery_Performance_OTIF:
+      description: On-Time In-Full delivery performance percentage - key KPI for logistics reliability
+      unit: percentage
+      type: calculated
+      definition: (Number of deliveries completed on-time and in-full / Total number of deliveries) × 100
+      range: 0-100
+      data_precision: 2 decimal places
+      quality: High - tracked by logistics management system
+      availability: 100%
+
+    Shipments_Disturbed_Delayed:
+      description: Number of shipments that experienced disruptions or delays during the month
+      unit: count
+      type: counted
+      definition: Total shipments not meeting on-time delivery criteria
+      range: 0 or positive integer
+      quality: High - tracked by logistics management system
+      availability: 100%
+
+    Kilometer_driven:
+      description: Total distance driven by autonomous vehicles per month
+      unit: kilometers
+      type: measured
+      data_precision: 2 decimal places
+      quality: High - measured from vehicle odometer and GPS data
+      availability: 100%
+
+    Average_load:
+      description: Average load weight per trip - indicator of vehicle utilization efficiency
+      unit: tonnes
+      type: calculated
+      definition: Total tonnes transported / Number of trips
+      data_precision: 2 decimal places
+      quality: High - calculated from measured values
+      availability: 100%
+
+    SLA_fulfilment:
+      description: Service Level Agreement fulfilment percentage - contractual performance metric
+      unit: percentage
+      type: calculated
+      definition: Percentage of shipments meeting all SLA requirements (time, condition, documentation)
+      range: 0-100
+      data_precision: 0 decimal places (whole percentages)
+      quality: High - tracked by contract management system
+      availability: 100%
+
+    ODD_Weather_downtime:
+      description: Operational Design Domain weather-related downtime - time when autonomous operations were suspended due to weather conditions exceeding ODD parameters
+      unit: time (HH:MM:SS)
+      type: measured
+      definition: Total duration when operations were halted due to weather conditions outside the safe operational envelope (e.g., heavy snow, ice, poor visibility)
+      time_format: HH:MM:SS
+      quality: High - logged by vehicle systems and operations monitoring
+      availability: 100%
+
+    Units_transported:
+      description: Number of individual units, packages, or pallets transported per month
+      unit: count
+      type: counted
+      definition: Total number of discrete shipping units handled
+      range: 0 or positive integer
+      quality: High - tracked by logistics management system
+      availability: 100%
+
+    Accumulated_AET_tonne_km_per_month:
+      description: Cumulative sum of AET tonne-kilometers from December 2024 baseline
+      unit: tonne-km
+      type: calculated
+      definition: Running total of monthly AET tonne-km values since start of data collection
+      data_precision: 1 decimal place
+      quality: High - calculated from monthly AET tonne-km values
+      availability: 100%
