@@ -1,0 +1,116 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+summary:
+  why_was_it_collected: To test GNSS and mobile network uplink connectivity in the MODI corridor between Malmö and Moss.
+  how_was_the_collection_executed: Field test trial collecting several relevant parameters related to GNSS and mobile network uplink connectivity.
+  objectives: Test GNSS and mobile network uplink connectivity in the MODI corridor between Malmö and Moss.
+
+  experimental_plan: Measure both Telenor and Telia uplink throughput and latency throughout the route.
+  research_questions: How is the GNSS and mobile network uplink connectivity in the MODI corridor between Malmö and Moss?
+  sample_selection_criteria: N/A
+
+  data_area: Norway and Sweden, from Malmö to Moss.
+  modi_use_case: UCCCAM
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Petter Arnesen, petter.arnesen@sintef.no
+  producer_of_data: Einride
+  web_address: N/A
+  DOI: N/A
+
+  # Which type of data this is.
+  data_type: mobile network, gnss
+  dataset_size: Approximately 38 MB (27k datapoints).
+  dataset_example: |
+    {"sample_time":"2025-04-23 13:47:28.230777 UTC","session":"2025-04-23_udevalla-gbg_5g","gnss":{"time":"2025-04-23 13:47:28.15581 UTC","sensorTime":"2025-04-23 13:47:28.1 UTC","latitudeDegrees":57.945347324505946,"longitudeDegrees":11.856023301238778,"altitudeMeters":72.8615,"horizontalAccuracyMeters":0.625,"verticalAccuracyMeters":1.205,"visibleSatellitesCount":"15"},"cellular":[{"imei":"351850975171524","receiveTime":"2025-04-23 13:47:24.887006 UTC","deviceModel":"DEVICE_MODEL_SIERRA_XR80","serialNumber":"6Q2313503802A128","networkType":"NETWORK_TYPE_5G_NR","cellularId":"1","snrDb":"-3276","rsrpDbm":"-80","rsrqDb":"-11","lac":"812","band":"n28","channel":"154600","vplmn":"242-02","iccid":"8947080038003997084","imsi":"242029011327120","cellId":"27814926","apn":"internet.netcom.no","rxBytes":"971269802","txBytes":"79567261900"},{"imei":"351850975171268","receiveTime":"2025-04-23 13:47:24.887028 UTC","deviceModel":"DEVICE_MODEL_SIERRA_XR80","serialNumber":"6Q2313504601A128","networkType":"NETWORK_TYPE_5G_NR","cellularId":"1","snrDb":"12","rsrpDbm":"-65","rsrqDb":"-11","lac":"11014","band":"n1","channel":"423020","vplmn":"240-08","iccid":"89460850027036483992","imsi":"240084717467777","cellId":"34573855","apn":"internet.telenor.se","signalBars":"4","rxBytes":"971915122","txBytes":"77376891168"}]}
+    {"sample_time":"2025-04-23 13:48:56.230718 UTC","session":"2025-04-23_udevalla-gbg_5g","gnss":{"time":"2025-04-23 13:48:56.175886 UTC","sensorTime":"2025-04-23 13:48:56.1 UTC","latitudeDegrees":57.923539493630578,"longitudeDegrees":11.878631506554758,"altitudeMeters":71.67475,"horizontalAccuracyMeters":0.625,"verticalAccuracyMeters":1.222,"visibleSatellitesCount":"15"},"cellular":[{"imei":"351850975171524","receiveTime":"2025-04-23 13:48:54.887004 UTC","deviceModel":"DEVICE_MODEL_SIERRA_XR80","serialNumber":"6Q2313503802A128","networkType":"NETWORK_TYPE_5G_NR","cellularId":"1","snrDb":"1","rsrpDbm":"-78","rsrqDb":"-14","lac":"812","band":"Band 3","channel":"1471","vplmn":"242-02","iccid":"8947080038003997084","imsi":"242029011327120","cellId":"57155096","apn":"internet.netcom.no","signalBars":"3","rxBytes":"971298976","txBytes":"79568706604"},{"imei":"351850975171268","receiveTime":"2025-04-23 13:48:54.887033 UTC","deviceModel":"DEVICE_MODEL_SIERRA_XR80","serialNumber":"6Q2313504601A128","networkType":"NETWORK_TYPE_5G_NR","cellularId":"1","snrDb":"20","rsrpDbm":"-85","rsrqDb":"-12","lac":"11014","band":"Band 8","channel":"3550","vplmn":"240-08","iccid":"89460850027036483992","imsi":"240084717467777","cellId":"33630495","apn":"internet.telenor.se","signalBars":"5","rxBytes":"975691534","txBytes":"77957178208"}]}
+    {"sample_time":"2025-04-23 13:52:12.230552 UTC","session":"2025-04-23_udevalla-gbg_5g","gnss":{"time":"2025-04-23 13:52:12.178801 UTC","sensorTime":"2025-04-23 13:52:12.1 UTC","latitudeDegrees":57.882821044118529,"longitudeDegrees":11.947888448089303,"altitudeMeters":54.5806,"horizontalAccuracyMeters":0.625,"verticalAccuracyMeters":1.21,"visibleSatellitesCount":"15"},"cellular":[{"imei":"351850975171524","receiveTime":"2025-04-23 13:52:09.887005 UTC","deviceModel":"DEVICE_MODEL_SIERRA_XR80","serialNumber":"6Q2313503802A128","networkType":"NETWORK_TYPE_5G_NR","cellularId":"1","snrDb":"21","rsrpDbm":"-57","rsrqDb":"-11","lac":"812","band":"n28","channel":"154600","vplmn":"242-02","iccid":"8947080038003997084","imsi":"242029011327120","cellId":"1007","apn":"internet.netcom.no","signalBars":"5","rxBytes":"971384425","txBytes":"79571971588"},{"imei":"351850975171268","receiveTime":"2025-04-23 13:52:09.887034 UTC","deviceModel":"DEVICE_MODEL_SIERRA_XR80","serialNumber":"6Q2313504601A128","networkType":"NETWORK_TYPE_5G_NR","cellularId":"1","rssiDbm":"-37","snrDb":"-19","rsrpDbm":"-67","rsrqDb":"-12","lac":"11014","band":"n78","channel":"644666","vplmn":"240-08","iccid":"89460850027036483992","imsi":"240084717467777","cellId":"232","apn":"internet.telenor.se","signalBars":"1","rxBytes":"982524867","txBytes":"79030894148"}]}
+
+# 5.3.3 Administrative metadata
+administrative:
+  version_number: 1
+  archiving_date: 2025-07-25
+  unique_dataset_id: modi_uc_ccam_einride_malmo_moss_samples
+
+  # Who has rights to use this dataset?
+  rights: Einride
+  license: "No"
+  access: MODI Partners, on request
+  constraints: agreed upon directly with Einride
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+  data_end_of_life: 2030-12-31
+
+  # A more detailed description of the various processes of the data collection
+  processes:
+    collection: |
+      Two Sierra XR80  4G/5G antennas and one Swift Duro GNSS receiver where mounted on a personal car, with two separate modems
+      connected to be able to measure both Telenor and Telia coverage throughout the route.
+
+      Data was collected from three different sources. Connectivity data was measured with iPerf 3.18  and directly from the modems.
+      GNSS data was recorded directly from the GNSS receiver. The software used to collect the data was developed inhouse by Einride.
+      Iperf was run in TCP mode and for the most part with unlimited bitrate, which means that the transfer speed is regulated entirely
+      by TCP’s built-in congestion control and flow control mechanisms. The connection will try to utilize the maximum available
+      bandwidth by adjusting its congestion window based on network feedback (packet loss, delay, etc.).
+
+      Each cellular modem has its own IMEI:
+      - 351850975171524 (Telenor - Swedish SIM-card)
+      - 351850975171268 (Telia - Swedish and Norwegian SIM-cards)
+    filtering: |
+      This data set is the raw data, and has no filters.
+    aggregation: |
+      This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+structural:
+  summary: |
+    GNSS and cellular data in samples.json, and iPerf TCP data in iperf_tcp_intervals.json.
+    There are also two files with start and end events for the iPerf TCP data, but these are not included in this metadata file.
+  file_format: line delimited JSON (JSONL), with each line being a JSON object.
+  file_structure: Flat files.
+  required_tools: notepad, various JSON parsing libraries
+  tool_versions: N/A
+
+# 5.3.1 Descriptive metadata
+descriptive:
+  fields:
+    sample_time:
+      description: Timestamp in format yyyy-mm-dd hh:mm:ss.fff UTC.
+
+      timezone: UTC
+      unit: s
+      sample_rate: 1hz
+      origin: The data collection app
+      type: datetime
+      quality: High
+
+    session:
+      description: |
+        The measurement session. A new session was started after each time the car stopped.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      quality: High
+
+    gnss:
+      description: GNSS object with time, sensor time, latitude, longitude, altitude, horizontal accuracy, vertical accuracy, and visible satellites count.
+
+      srid: 4326
+      unit: degrees
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: object
+      error_codes: Some rows does not have coordinates.
+      quality: Usually within 1 meter.
+
+    cellular:
+      description: List of cellular objects with various parameters such as IMEI, receive time, device model, serial number, network type, cellular ID, SNR, RSRP, RSRQ, LAC, band, channel, VPLMN, ICCID, IMSI, cell ID, APN, RX bytes and TX bytes.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: object
+      error_codes: Not all rows has cellular data for both modems.
+      quality: Good.

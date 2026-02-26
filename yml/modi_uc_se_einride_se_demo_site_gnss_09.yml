@@ -1,0 +1,163 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+summary:
+  why_was_it_collected: Monitor GNSS positioning at Swedish demo site.
+  how_was_the_collection_executed: Data logged automatically, September 1-5, 2025.
+  objectives: Document GNSS positioning for UC Sweden demonstrations.
+
+  experimental_plan: N/A
+  research_questions: N/A
+  sample_selection_criteria: N/A
+
+  modi_use_case: UCSE
+  data_area: Swedish demo site, Sweden
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Pia Wijk, pia.wijk@einride.tech
+  producer_of_data: Einride
+  web_address: N/A
+  DOI: N/A
+
+  # Which type of data this is.
+  data_type: gnss, vehicle probe data
+  dataset_size: CSV file, approximately 4.9 million rows, 1.5 GB.
+  dataset_example: |
+    id,time,sensor_time,reference_frame,solution_type,latitude_degrees,longitude_degrees,heading_radians,altitude_meters,horizontal_accuracy_meters,vertical_accuracy_meters,hdop,vdop,pdop,tdop,gdop,visible_satellites_count
+    ,2025-09-02 06:19:55.918647 UTC,2025-09-02 06:19:55.4 UTC,REFERENCE_FRAME_GNSS_FRONT,GNSS_SOLUTION_TYPE_SINGLE,59.938939439619844,16.952023805214935,,103.07434844970703,2.3059999942779541,3.6210000514984131,1.4099999666213989,2.0799999237060547,2.5099999904632568,1.5199999809265137,2.93999981880188,15
+
+# 5.3.3 Administrative metadata
+administrative:
+  version_number: 1
+  archiving_date: 2026-02-06
+  unique_dataset_id: modi_uc_se_einride_se_demo_site_gnss_09
+
+  # Who has rights to use this dataset?
+  rights: Einride
+  license: "No"
+  access: MODI Partners, on request
+  constraints: agreed upon directly with Einride
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+  data_end_of_life: 2030-12-31
+
+  # A more detailed description of the various processes of the data collection,
+  processes:
+    collection: Data logged automatically.
+    filtering: This data set is the raw data, and has no filters.
+    aggregation: This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+structural:
+  summary: Single CSV file.
+  file_format: csv with ',' as delimiter, '.' as decimal separator.
+  file_structure: Single CSV file with header row. Each row represents one measurement from one device.
+  required_tools: CSV parser (Excel, Python, R, etc.)
+  tool_versions: N/A
+
+# 5.3.1 Descriptive metadata
+descriptive:
+  fields:
+    id:
+      description: Measurement ID.
+      type: string
+      availability: Mostly empty
+
+    time:
+      description: System timestamp when measurement was received.
+      timezone: UTC
+      type: datetime
+      format: "YYYY-MM-DD HH:MM:SS.ffffff UTC"
+      range: 2025-09-01 to 2025-09-05
+
+    sensor_time:
+      description: GNSS sensor timestamp.
+      timezone: UTC
+      type: datetime
+      format: "YYYY-MM-DD HH:MM:SS.S UTC"
+
+    reference_frame:
+      description: Reference frame for GNSS measurements.
+      type: string
+
+    solution_type:
+      description: GNSS solution type indicating positioning accuracy level.
+      type: string
+      availability: Always present
+
+    latitude_degrees:
+      description: WGS84 latitude.
+      unit: degrees
+      type: float
+      srid: 4326
+      availability: Always present
+
+    longitude_degrees:
+      description: WGS84 longitude.
+      unit: degrees
+      type: float
+      srid: 4326
+      availability: Always present
+
+    heading_radians:
+      description: Vehicle heading.
+      unit: radians
+      type: float
+      availability: Mostly empty
+
+    altitude_meters:
+      description: Altitude above sea level.
+      unit: meters
+      type: float
+      availability: Always present
+
+    horizontal_accuracy_meters:
+      description: Estimated horizontal positioning accuracy.
+      definition: "Estimated 1-sigma horizontal position accuracy. Lower values indicate higher confidence in position."
+      unit: meters
+      type: float
+      availability: Always present
+
+    vertical_accuracy_meters:
+      description: Estimated vertical positioning accuracy.
+      definition: "Estimated 1-sigma vertical position accuracy. Lower values indicate higher confidence in altitude."
+      unit: meters
+      type: float
+      availability: Always present
+
+    hdop:
+      description: Horizontal Dilution of Precision.
+      definition: "Measures geometric quality of horizontal positioning. Lower values (<2) indicate better satellite geometry."
+      type: float
+      availability: Always present
+
+    vdop:
+      description: Vertical Dilution of Precision.
+      definition: "Measures geometric quality of vertical positioning. Lower values (<3) indicate better satellite geometry."
+      type: float
+      availability: Always present
+
+    pdop:
+      description: Position Dilution of Precision.
+      definition: "Combines horizontal and vertical DOP. Indicates overall 3D positioning quality. Lower values (<3) indicate better geometry."
+      type: float
+      availability: Always present
+
+    tdop:
+      description: Time Dilution of Precision.
+      definition: "Measures geometric quality of time solution from satellite geometry."
+      type: float
+      availability: Always present
+
+    gdop:
+      description: Geometric Dilution of Precision.
+      definition: "Overall measure of satellite geometry quality including position and time. Combines PDOP and TDOP."
+      type: float
+      availability: Always present
+
+    visible_satellites_count:
+      description: Number of visible satellites.
+      type: integer
+      availability: Always present
+

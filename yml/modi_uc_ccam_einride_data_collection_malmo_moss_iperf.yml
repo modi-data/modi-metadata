@@ -1,0 +1,130 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+summary:
+  why_was_it_collected: To test GNSS and mobile network uplink connectivity in the MODI corridor between Malmö and Moss.
+  how_was_the_collection_executed: Field test trial collecting several relevant parameters related to GNSS and mobile network uplink connectivity.
+  objectives: Test GNSS and mobile network uplink connectivity in the MODI corridor between Malmö and Moss.
+
+  experimental_plan: Measure both Telenor and Telia uplink throughput and latency throughout the route.
+  research_questions: How is the GNSS and mobile network uplink connectivity in the MODI corridor between Malmö and Moss?
+  sample_selection_criteria: N/A
+
+  data_area: Norway and Sweden, from Malmö to Moss.
+  modi_use_case: UCCCAM
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Pia Wijk, pia.wijk@einride.tech
+  producer_of_data: Einride
+  web_address: N/A
+  DOI: N/A
+
+  # Which type of data this is.
+  data_type: mobile network, gnss
+  dataset_size: Approximately 42 MB (27k datapoints).
+  dataset_example: |
+    {"session":"2025-04-23_gbg-moss_tcp-12mbps","imei":"351850975171268","event":"interval","data":{"streams":[{"socket":"6","start":584.001252,"end":585.001278,"seconds":1.0000259876251221,"bytes":"0","bits_per_second":0,"retransmits":"0","snd_cwnd":"1018012","snd_wnd":"-1","rtt":"712960","rttvar":"10137","pmtu":"1500","omitted":false,"sender":true},{"socket":"8","start":584.001259,"end":585.001294,"seconds":1.0000350475311279,"bytes":"0","bits_per_second":0,"retransmits":"0","snd_cwnd":"1026608","snd_wnd":"-1","rtt":"707765","rttvar":"6679","pmtu":"1500","omitted":false,"sender":true}],"sum":{"start":584.001252,"end":585.001278,"seconds":1.0000259876251221,"bytes":"0","bits_per_second":0,"retransmits":"0","omitted":false,"sender":true}}}
+    {"session":"2025-04-23_gbg-moss_tcp-12mbps","imei":"351850975171268","event":"interval","data":{"streams":[{"socket":"6","start":680.000199,"end":681.00017,"seconds":0.99997097253799438,"bytes":"0","bits_per_second":0,"retransmits":"49","snd_cwnd":"823988","snd_wnd":"-1","rtt":"1291506","rttvar":"25322","pmtu":"1500","omitted":false,"sender":true},{"socket":"8","start":680.00021,"end":681.000176,"seconds":0.999966025352478,"bytes":"0","bits_per_second":0,"retransmits":"68","snd_cwnd":"838724","snd_wnd":"-1","rtt":"1306404","rttvar":"12519","pmtu":"1500","omitted":false,"sender":true}],"sum":{"start":680.000199,"end":681.00017,"seconds":0.99997097253799438,"bytes":"0","bits_per_second":0,"retransmits":"117","omitted":false,"sender":true}}}
+
+# 5.3.3 Administrative metadata
+administrative:
+  version_number: 1
+  archiving_date: 2025-07-25
+  unique_dataset_id: modi_uc_ccam_einride_malmo_moss_iperf
+
+  # Who has rights to use this dataset?
+  rights: Einride
+  license: "No"
+  access: MODI Partners, on request
+  constraints: agreed upon directly with Einride
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+  data_end_of_life: 2030-12-31
+
+  # A more detailed description of the various processes of the data collection
+  processes:
+    collection: |
+      Two Sierra XR80  4G/5G antennas and one Swift Duro GNSS receiver where mounted on a personal car, with two separate modems
+      connected to be able to measure both Telenor and Telia coverage throughout the route.
+
+      Data was collected from three different sources. Connectivity data was measured with iPerf 3.18  and directly from the modems.
+      GNSS data was recorded directly from the GNSS receiver. The software used to collect the data was developed inhouse by Einride.
+      Iperf was run in TCP mode and for the most part with unlimited bitrate, which means that the transfer speed is regulated entirely
+      by TCP's built-in congestion control and flow control mechanisms. The connection will try to utilize the maximum available
+      bandwidth by adjusting its congestion window based on network feedback (packet loss, delay, etc.).
+
+      Each cellular modem has its own IMEI:
+      - 351850975171524 (Telenor - Swedish SIM-card)
+      - 351850975171268 (Telia - Swedish and Norwegian SIM-cards)
+    filtering: |
+      This data set is the raw data, and has no filters.
+    aggregation: |
+      This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+structural:
+  summary: |
+    GNSS and cellular data in samples.json, and iPerf TCP data in iperf_tcp_intervals.json.
+    There are also two files with start and end events for the iPerf TCP data, but these are not included in this metadata file.
+  file_format: line delimited JSON (JSONL), with each line being a JSON object.
+  file_structure: Flat files.
+  required_tools: notepad, various JSON parsing libraries
+  tool_versions: N/A
+
+# 5.3.1 Descriptive metadata
+descriptive:
+  fields:
+    session:
+      description: |
+        The measurement session. A new session was started after each time the car stopped.
+
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      quality: High
+
+    imei:
+      description: |
+        The IMEI of the modem used to collect the data. Each modem has its own IMEI:
+        - 351850975171524 (Telenor - Swedish SIM-card)
+        - 351850975171268 (Telia - Swedish and Norwegian SIM-cards)
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      quality: High
+
+    event:
+      description: |
+        The type of event. Can be "start", "end", or "interval". "start" and "end" events are used to mark the start and end of a measurement session,
+        while "interval" events are used to mark the intervals between measurements. "start" and "end" events are not included in this metadata file,
+        but are included in two separate files: iperf_tcp_start_events.json and iperf_tcp_end_events.json.
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: string
+      quality: High
+
+    data:
+      description: |
+        The data collected during the measurement session. This is a JSON object containing the following fields:
+        - streams: An array of streams, each containing the following fields:
+          - socket: The socket number.
+          - start: The start time of the stream in seconds since the start of the session.
+          - end: The end time of the stream in seconds since the start of the session.
+          - seconds: The duration of the stream in seconds.
+          - bytes: The number of bytes transferred during the stream.
+          - bits_per_second: The average bitrate of the stream in bits per second.
+          - retransmits: The number of retransmits during the stream.
+          - snd_cwnd: The size of the send congestion window in bytes.
+          - snd_wnd: The size of the send window in bytes.
+          - rtt: The round-trip time in microseconds.
+          - rttvar: The round-trip time variance in microseconds.
+          - pmtu: The path MTU in bytes.
+          - omitted: Whether the stream was omitted from the summary.
+          - sender: Whether the stream was sent by the sender.
+        - sum: A summary of the streams, containing the same fields as the streams, but
+          aggregated over all streams in the session.
+      sample_rate: 1hz
+      origin: The data collection app.
+      type: object
+      quality: High

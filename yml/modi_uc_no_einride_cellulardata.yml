@@ -1,0 +1,193 @@
+# This metadata format is based on the FOT-Net Data Sharing Framework (DSF).
+# The DSF can be consulted if anything is unclear; each section in the format is directly
+# or indirectly based on a section in the DSF document.
+# https://www.connectedautomateddriving.eu/wp-content/uploads/2021/09/Data-Sharing-Framework-v1.1-final.pdf
+
+summary:
+  why_was_it_collected: Part of MODI UC NO demonstration at Swedish-Norwegian border crossing
+  how_was_the_collection_executed: Data logged automatically.
+  objectives: To support MODI UC NO objectives of demonstrating autonomous electric trucks for cross-border logistics operations.
+
+  experimental_plan: N/A
+  research_questions: N/A
+  sample_selection_criteria: N/A
+
+  modi_use_case: UCNO
+  data_area: Ørje customs area (E18, Swedish-Norwegian border).
+
+  # A person that can be contacted for more information about this dataset.
+  contact_person: Pia Wijk, pia.wijk@einride.tech
+  producer_of_data: Einride
+  web_address: N/A
+  DOI: N/A
+
+  # Which type of data this is.
+  data_type: mobile network
+  dataset_size: CSV file with 43,364 rows, 10 MB. Data spans from 2025-09-23 00:11:18 UTC to 2025-09-24 06:19:31 UTC.
+  dataset_example: |
+    receive_time,serial_number,network_type,cellular_id,imei,rssi_dbm,snr_db,sinr_db,ecio_db,rsrp_dbm,rsrq_db,band_frequency_mhz,lac,tac,enodeb_id,rscp_dbm,band,channel,vplmn,roaming,iccid,imsi,cell_id,apn,signal_bars,rx_bytes,tx_bytes,rx_errors,tx_errors
+    2025-09-23 00:11:18.019234 UTC,6Q3156005402F132,NETWORK_TYPE_5G_NR,1,351850975046106,-45,-15,,,-80,-9,,33201,,,,n28,152600,242-01,,89470060230323129592,242016002503921,47,telenor,1,184239607237,4136148821144,,
+
+# 5.3.3 Administrative metadata
+administrative:
+  version_number: 1
+  archiving_date: 2025-11-24
+  unique_dataset_id: modi_uc_no_einride_cellulardata
+
+  # Who has rights to use this dataset?
+  rights: Einride
+  license: "No"
+  access: MODI Partners, on request
+  constraints: agreed upon directly with Einride
+  billing: The dataset can be used without cost as long as access and constraints are agreed upon.
+  data_end_of_life: 2030-12-31
+
+  # A more detailed description of the various processes of the data collection,
+  processes:
+    collection: Data logged automatically.
+    filtering: This data set is the raw data, and has no filters.
+    aggregation: This data set is the raw data, and has no aggregations.
+
+# 5.3.2 Structural metadata
+structural:
+  summary: Single CSV file.
+  file_format: csv with ',' as delimiter, '.' as decimal separator.
+  file_structure: Single CSV file with header row. Each row represents one measurement from one device.
+  required_tools: CSV parser (Excel, Python, R, etc.)
+  tool_versions: N/A
+
+# 5.3.1 Descriptive metadata
+descriptive:
+  fields:
+    receive_time:
+      description: Timestamp when the measurement was received
+      time_format: ISO 8601 (YYYY-MM-DD HH:MM:SS.ffffff UTC)
+      time_zone: UTC
+
+    serial_number:
+      description: Serial number of the cellular device
+      type: String
+
+    network_type:
+      description: Type of cellular network connection
+
+    cellular_id:
+      description: Cellular interface identifier
+      type: Integer
+
+    imei:
+      description: International Mobile Equipment Identity
+      type: String (15 digits)
+
+    rssi_dbm:
+      description: Received Signal Strength Indicator
+      unit: dBm
+      availability: Always present
+
+    snr_db:
+      description: Signal-to-Noise Ratio
+      unit: dB
+      availability: May be empty
+
+    sinr_db:
+      description: Signal-to-Interference-plus-Noise Ratio
+      unit: dB
+      availability: May be empty
+
+    ecio_db:
+      description: Ec/Io (Energy per chip to Interference ratio, for CDMA/UMTS)
+      unit: dB
+      availability: May be empty
+
+    rsrp_dbm:
+      description: Reference Signal Received Power (for LTE/5G)
+      unit: dBm
+      availability: Present for LTE/5G connections
+
+    rsrq_db:
+      description: Reference Signal Received Quality (for LTE/5G)
+      unit: dB
+      availability: Present for LTE/5G connections
+
+    band_frequency_mhz:
+      description: Band frequency in MHz
+      unit: MHz
+      availability: May be empty
+
+    lac:
+      description: Location Area Code (for GSM/UMTS)
+      type: Integer
+      availability: May be empty
+
+    tac:
+      description: Tracking Area Code (for LTE/5G)
+      type: Integer
+      availability: May be empty
+
+    enodeb_id:
+      description: eNodeB identifier (for LTE)
+      type: Integer
+      availability: May be empty
+
+    rscp_dbm:
+      description: Received Signal Code Power (for UMTS)
+      unit: dBm
+      availability: May be empty
+
+    band:
+      description: Frequency band identifier
+      type: String
+
+    channel:
+      description: Channel number
+      type: Integer
+
+    vplmn:
+      description: Visited Public Land Mobile Network identifier
+      type: String (format MCC-MNC)
+
+    roaming:
+      description: Roaming status
+      type: String
+      availability: May be empty
+
+    iccid:
+      description: Integrated Circuit Card Identifier (SIM card ID)
+      type: String (up to 20 digits)
+
+    imsi:
+      description: International Mobile Subscriber Identity
+      type: String (up to 15 digits)
+
+    cell_id:
+      description: Cell tower identifier
+      type: Integer
+
+    apn:
+      description: Access Point Name
+      type: String
+
+    signal_bars:
+      description: Signal strength indicator (display bars)
+      type: Integer
+      range: 1-5
+
+    rx_bytes:
+      description: Total received bytes (cumulative)
+      unit: bytes
+      type: Integer
+
+    tx_bytes:
+      description: Total transmitted bytes (cumulative)
+      unit: bytes
+      type: Integer
+
+    rx_errors:
+      description: Receive errors count
+      type: Integer
+      availability: May be empty
+
+    tx_errors:
+      description: Transmit errors count
+      type: Integer
+      availability: May be empty
